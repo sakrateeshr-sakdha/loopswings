@@ -1,0 +1,10 @@
+node_modules
+.next
+.next-build
+out
+.env*.local
+public/uploads/*
+!public/uploads/.gitkeep
+*.tsbuildinfo
+next-env.d.ts
+data/leads.json

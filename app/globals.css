@@ -1,0 +1,436 @@
+:root{
+  --ink:#111111;
+  --muted:#676767;
+  --paper:#ffffff;
+  --gold:#f4c431;
+  --gold-soft:#fff4bf;
+  --line:#e8e8e8;
+  --max:1180px;
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--paper);
+  font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  line-height:1.55;
+}
+body:before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background:
+    linear-gradient(rgba(20,20,20,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20,20,20,.035) 1px, transparent 1px);
+  background-size:34px 34px;
+  -webkit-mask-image:radial-gradient(circle at 50% 40%, black 0 28%, rgba(0,0,0,.6) 48%, transparent 78%);
+  mask-image:radial-gradient(circle at 50% 40%, black 0 28%, rgba(0,0,0,.6) 48%, transparent 78%);
+}
+body:after{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background:radial-gradient(circle at 50% 20%, rgba(244,196,49,.06), transparent 28%);
+}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:var(--max); margin:auto; padding:0 26px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:20;
+  backdrop-filter:blur(14px);
+  background:rgba(255,255,255,.88);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.nav-inner{
+  max-width:var(--max); margin:auto; padding:16px 26px;
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.03em;
+  text-decoration:none;font-size:20px;min-height:44px;
+}
+.brand-logo{height:34px;width:auto;display:block}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
+.nav-links a{text-decoration:none;color:#333}
+.nav-links a:not(.btn):hover{color:#000}
+
+/* Menu toggle: hidden until the links collapse at 900px. */
+.nav-toggle{
+  display:none;
+  width:46px;height:46px;padding:0;
+  align-items:center;justify-content:center;
+  background:#fff;border:1.5px solid var(--ink);border-radius:14px;cursor:pointer;
+}
+.nav-bars{display:grid;gap:5px;width:20px}
+.nav-bars span{display:block;height:2.5px;background:var(--ink);border-radius:2px;transition:.2s transform,.2s opacity}
+.nav-bars.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.nav-bars.open span:nth-child(2){opacity:0}
+.nav-bars.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:14px 20px; border-radius:999px; text-decoration:none; font-weight:800;
+  border:1.5px solid var(--ink); background:var(--ink); color:#fff;
+  transition:.2s transform,.2s box-shadow; cursor:pointer; font-family:inherit; font-size:inherit;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.btn.gold{background:var(--gold);color:var(--ink);border-color:var(--ink)}
+.btn.ghost{background:white;color:var(--ink)}
+
+/* ---------- type ---------- */
+.kicker{
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-size:15px; font-weight:700; display:inline-block; position:relative; z-index:0;
+}
+.kicker:after{
+  content:"";position:absolute;left:0;right:0;bottom:-4px;height:5px;
+  background:var(--gold);border-radius:999px;transform:rotate(-1deg);z-index:-1;
+}
+h1,h2,h3{letter-spacing:-.045em;line-height:1.02;margin:0}
+h1{font-size:clamp(48px,6.5vw,86px);max-width:850px}
+h2{font-size:clamp(34px,4vw,58px)}
+h3{font-size:24px}
+.lead{font-size:21px;color:#353535;max-width:760px;margin:24px 0}
+.small{font-size:13px;color:var(--muted)}
+.marker{position:relative;display:inline;z-index:0}
+.marker:before{
+  content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;bottom:.07em;height:.42em;
+  background:var(--gold);transform:rotate(-1deg);border-radius:4px;
+}
+.statement{
+  font-size:clamp(28px,3vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.15;
+  margin:24px 0;
+}
+
+/* ---------- layout ---------- */
+/* Adjacent sections each contribute their padding, so this value is roughly
+   half the visible gap between two sections. */
+section{padding:64px 0}
+.hero{padding:64px 0 48px}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:26px}
+.section-head{max-width:820px;margin-bottom:36px}
+.section-head p{font-size:18px;color:#444}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+
+.doodle-card{
+  border:1.5px solid var(--ink);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.94);
+  padding:22px;
+  box-shadow:8px 8px 0 var(--gold-soft);
+  /* Capped so a square illustration doesn't tower over the text beside it, but
+     wide enough to hold the column. Overridden to full width below 900px. */
+  max-width:500px;
+  margin-inline:auto;
+}
+.doodle-card img{display:block;width:100%;height:auto;border-radius:14px}
+svg.doodle{width:100%;height:auto;display:block}
+
+/* ---------- problem list ---------- */
+.problem-list{display:grid;gap:12px;margin-top:24px}
+.problem{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed #d8d8d8}
+.x,.check{
+  width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;
+  display:grid;place-items:center;font-weight:900;flex:0 0 auto;font-size:14px;
+}
+.check{background:var(--gold)}
+
+/* ---------- system / steps ---------- */
+.system-box{border:1.5px solid var(--ink);border-radius:30px;padding:30px;background:white;position:relative}
+.system-box:before{
+  content:"90 DAYS";position:absolute;top:-15px;right:26px;
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-weight:800;
+  background:var(--gold);padding:6px 12px;border:1.5px solid var(--ink);transform:rotate(2deg)
+}
+.steps{display:grid;gap:20px}
+.step{
+  display:grid;grid-template-columns:94px 1fr 260px;gap:22px;align-items:center;
+  border-top:1px solid var(--line);padding:28px 0
+}
+.step-num{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-size:42px;font-weight:900}
+.step p{margin:10px 0 0;color:#4a4a4a}
+.step-visual{border:1.5px solid var(--ink);border-radius:20px;padding:12px;background:#fff}
+
+/* ---------- capability cards ---------- */
+.handle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.handle-card{
+  min-height:220px;border:1.5px solid var(--ink);border-radius:22px;padding:20px;background:white;
+  display:flex;flex-direction:column;justify-content:space-between;gap:14px
+}
+.handle-card svg{width:84px;height:84px}
+.handle-card p{color:#555;font-size:14px;margin:6px 0 0}
+
+/* ---------- flow ---------- */
+.flow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
+.flow-item{border:1.5px solid var(--ink);border-radius:18px;padding:16px 18px;background:white;font-weight:700}
+.arrow{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-size:25px}
+/* Long sequences sit in a half-width column, where a row would wrap and leave
+   arrows pointing sideways at nothing. These read top-to-bottom at every width. */
+.flow.flow-stack{flex-direction:column;align-items:stretch;gap:8px;max-width:430px}
+.flow.flow-stack .flow-item{text-align:center}
+.flow.flow-stack .arrow{align-self:center;line-height:1;transform:rotate(90deg)}
+
+/* ---------- goal ---------- */
+.goal{border:1.5px solid var(--ink);border-radius:32px;padding:40px;background:white;position:relative;overflow:hidden}
+.goal:after{
+  content:"";position:absolute;width:240px;height:240px;border:1.5px dashed var(--ink);border-radius:50%;
+  right:-120px;bottom:-140px
+}
+.goal-big{font-size:clamp(52px,7vw,92px);font-weight:900;letter-spacing:-.06em;line-height:.9}
+
+/* ---------- list cards ---------- */
+.list-card{border:1.5px solid var(--ink);border-radius:24px;padding:26px;background:white}
+.list-card ul{padding:0;list-style:none;margin:18px 0 0;display:grid;gap:14px}
+.list-card li{display:flex;gap:12px}
+.badge{
+  display:inline-block;padding:5px 9px;border:1.5px solid var(--ink);border-radius:999px;background:var(--gold-soft);
+  font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase
+}
+
+/* ---------- commit / timeline ---------- */
+.commit{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+.timeline{border:1.5px solid var(--ink);border-radius:24px;padding:26px;background:#fff}
+.timeline-row{display:grid;grid-template-columns:80px 1fr;gap:15px;align-items:start;padding:14px 0;border-bottom:1px dashed #ddd}
+.timeline-row:last-child{border-bottom:0}
+.timeline-row strong{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive}
+
+/* ---------- cta + form ---------- */
+.cta{border:1.5px solid var(--ink);border-radius:34px;padding:48px;background:var(--gold-soft);text-align:center}
+.cta p{max-width:720px;margin:18px auto 26px;color:#333;font-size:18px}
+.form{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:820px;margin:30px auto 0;text-align:left
+}
+.form input,.form select,.form textarea{
+  width:100%;padding:14px 16px;border:1.5px solid #222;border-radius:14px;background:white;font:inherit
+}
+.form textarea{min-height:120px;grid-column:1/-1;resize:vertical}
+.form .wide{grid-column:1/-1}
+/* The submit spans both columns but sizes to its label rather than stretching. */
+.form .btn{justify-self:center;padding-inline:38px;max-width:100%}
+.form-note{grid-column:1/-1;text-align:center;font-weight:800}
+.form-note.error{color:#b3261e}
+
+/* Desktop only: tighten the enquiry block so the whole call to action fits on
+   one screen. Phones keep the roomier sizing and its larger tap targets. */
+@media(min-width:901px){
+  .cta{padding:34px 44px}
+  .cta p{margin:12px auto 16px}
+  .form{margin-top:18px;gap:10px}
+  .form input,.form select,.form textarea{padding:11px 15px;border-radius:12px}
+  .form textarea{min-height:84px}
+  .form .btn{padding:12px 38px}
+}
+
+/* ---------- faq ---------- */
+.faq{max-width:900px;margin:auto}
+details{border-top:1px solid #ddd;padding:20px 0}
+details:last-child{border-bottom:1px solid #ddd}
+summary{
+  cursor:pointer;font-weight:800;font-size:18px;list-style:none;
+  display:flex;align-items:center;min-height:44px; /* comfortable tap target */
+}
+summary::-webkit-details-marker{display:none}
+details p{color:#4d4d4d;margin:12px 0 0}
+
+/* ---------- social strip ---------- */
+.social{border-top:1px solid #e7e7e7;background:var(--gold-soft);padding:26px 0}
+.social-inner{
+  display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;text-align:center
+}
+.social-title{
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-weight:700;font-size:16px
+}
+.social-list{list-style:none;display:flex;gap:12px;margin:0;padding:0;flex-wrap:wrap;justify-content:center}
+.social-btn{
+  width:48px;height:48px;border-radius:50%;
+  border:1.5px solid var(--ink);background:#fff;color:var(--ink);
+  display:grid;place-items:center;text-decoration:none;
+  transition:.2s transform,.2s background,.2s box-shadow;
+}
+.social-btn:hover{
+  background:var(--gold);transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.14)
+}
+
+/* ---------- footer ---------- */
+.footer{padding:36px 0 24px;border-top:1px solid #e7e7e7}
+.footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;flex-wrap:wrap}
+.footer small{color:#666}
+.footer-links{display:flex;gap:18px;font-size:14px;flex-wrap:wrap}
+.footer-links a{text-decoration:none;color:#444;display:inline-flex;align-items:center;min-height:44px}
+
+/* ---------- testimonials page ---------- */
+.page-hero{text-align:center;padding:72px 0 44px}
+.page-hero .lead{margin:22px auto 0}
+/* ---------- auto-scrolling logo strip ---------- */
+.marquee{
+  overflow:hidden;
+  /* Fade the edges so tiles enter and leave rather than being cut off. */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.marquee-track{
+  display:flex;width:max-content;
+  animation:marquee var(--duration,40s) linear infinite;
+}
+.marquee-set{display:flex;gap:16px;padding-right:16px}
+.marquee .logo{width:250px;flex:0 0 auto}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track{animation-play-state:paused}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(calc(-100% / var(--sets,2)))}
+}
+@media(prefers-reduced-motion:reduce){
+  /* No motion: fall back to a strip the visitor scrolls themselves. */
+  .marquee{overflow-x:auto;mask-image:none;-webkit-mask-image:none}
+  .marquee-track{animation:none}
+}
+.logo{
+  min-height:130px;border:1.5px solid var(--ink);border-radius:22px;background:#fff;
+  display:grid;place-items:center;text-align:center;padding:18px;gap:8px;
+  text-decoration:none;font-weight:900;
+}
+/* Fill the tile width; object-fit keeps the logo's own proportions inside. */
+.logo img{width:100%;height:auto;max-height:120px;object-fit:contain}
+.logo span{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.quote{
+  border:1.5px solid var(--ink);border-radius:24px;background:#fff;padding:26px;min-height:260px;
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden
+}
+.quote:after{
+  content:"\201C";position:absolute;right:20px;top:-4px;font:96px Georgia;color:var(--gold);opacity:.3
+}
+.quote blockquote{margin:0;font:20px/1.55 "Segoe Print","Comic Sans MS",cursive;max-width:90%}
+.meta{margin-top:24px;padding-top:16px;border-top:1px dashed #ccc;display:flex;gap:14px;align-items:center}
+.meta img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1.5px solid var(--ink);flex:0 0 auto}
+.meta strong{display:block}
+.meta span{font-size:14px;color:var(--muted)}
+/* start, not stretch: a tall portrait card must not pad the card beside it
+   with empty space. */
+.videos{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:start}
+.video{border:1.5px solid var(--ink);border-radius:24px;padding:16px;background:#fff}
+.frame{
+  aspect-ratio:16/9;border:1.5px solid var(--ink);border-radius:16px;background:#fafafa;
+  display:grid;place-items:center;overflow:hidden;position:relative;padding:0;width:100%;cursor:pointer
+}
+/* Reels/shorts fill their card like landscape videos do. The card itself is
+   narrowed below, so "full width" doesn't turn into a 900px-tall frame. */
+.frame.portrait{aspect-ratio:9/16;width:100%;height:auto}
+.video:has(.frame.portrait){width:min(100%,320px)}
+.videos .video:has(.frame.portrait){justify-self:center}
+.frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.frame iframe,.frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{
+  width:72px;height:72px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);
+  position:relative;z-index:1
+}
+.play:after{
+  content:"";position:absolute;left:29px;top:21px;border-left:20px solid var(--ink);
+  border-top:13px solid transparent;border-bottom:13px solid transparent
+}
+.vmeta{padding:14px 4px 2px}
+.vmeta strong{display:block}
+.vmeta span{font-size:14px;color:var(--muted)}
+.empty-note{
+  border:1.5px dashed #c9c9c9;border-radius:22px;padding:34px;text-align:center;color:var(--muted);background:#fff
+}
+
+/* ---------- horizontal rail ----------
+   Used when a row holds more cards than fit: two per view on desktop, one on
+   mobile, the rest reachable by scrolling or swiping. */
+.rail{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:calc((100% - 20px) / 2);
+  gap:20px;
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  padding-bottom:16px;
+  scrollbar-color:var(--gold) #ececec;
+}
+.rail{align-items:start}
+.rail-cell{scroll-snap-align:start;min-width:0}
+.rail-cell > *{margin-inline:auto} /* centres a narrower card within its column */
+/* Video cards keep their natural heights (a portrait card must not stretch the
+   landscape one), but quote cards look better squared off to a common height. */
+.rail-cell:has(.quote){align-self:stretch}
+.rail-cell:has(.quote) > .quote{height:100%}
+.rail-nav{
+  display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px
+}
+.rail-btn{
+  width:48px;height:48px;flex:0 0 auto;
+  border:1.5px solid var(--ink);border-radius:999px;background:#fff;
+  font:inherit;font-size:20px;font-weight:800;cursor:pointer;
+  display:grid;place-items:center;transition:.2s background,.2s transform;
+}
+.rail-btn:hover:not(:disabled){background:var(--gold);transform:translateY(-2px)}
+.rail-btn:disabled{opacity:.35;cursor:not-allowed}
+.rail-note{
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-size:13px;color:var(--muted)
+}
+.rail::-webkit-scrollbar{height:10px}
+.rail::-webkit-scrollbar-track{background:#ececec;border-radius:999px}
+.rail::-webkit-scrollbar-thumb{background:var(--gold);border-radius:999px;border:1.5px solid var(--ink)}
+
+@media(max-width:900px){
+  .hero-grid,.split,.commit,.two-col{grid-template-columns:1fr}
+  .step{grid-template-columns:70px 1fr}.step-visual{grid-column:2}
+  .handle-grid{grid-template-columns:1fr 1fr}
+
+  /* Collapse the links into a toggle panel rather than hiding them. */
+  .nav-toggle{display:inline-flex}
+  .nav-links{
+    display:none;
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#fff;border-bottom:1.5px solid var(--ink);
+    padding:10px 18px 18px;font-size:16px;
+    box-shadow:0 14px 24px rgba(0,0,0,.08);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a:not(.btn){
+    padding:14px 4px;font-weight:700;border-bottom:1px dashed #e2e2e2;
+  }
+  .nav-links a:not(.btn):last-of-type{border-bottom:0}
+  .nav-links .btn{margin-top:12px;padding:16px 20px}
+  .marquee .logo{width:190px}
+  .quotes,.videos{grid-template-columns:1fr}
+  .rail{grid-auto-columns:calc(100% - 34px)}
+
+  /* A wrapped row leaves arrows pointing sideways at nothing, so below the
+     desktop breakpoint the flow becomes a top-to-bottom sequence. */
+  .flow{flex-direction:column;align-items:stretch;gap:8px}
+  .flow-item{text-align:center;padding:13px 16px}
+  .arrow{align-self:center;line-height:1;font-size:21px;transform:rotate(90deg)}
+
+  /* Once these stack, the card spans the column again and only the illustration
+     inside it needs capping. */
+  .doodle-card{max-width:none;margin-inline:0} /* stretch to the column again */
+  .doodle-card img{max-width:320px;margin:0 auto}
+  .step-visual img,.step-visual svg{max-width:190px;margin:0 auto}
+}
+@media(max-width:600px){
+  .wrap{padding:0 18px}.nav-inner{padding:14px 18px}
+  section{padding:38px 0}.hero{padding-top:42px}.page-hero{padding:44px 0 26px}
+  .handle-grid{grid-template-columns:1fr}
+  .form{grid-template-columns:1fr}.form textarea,.form .wide{grid-column:1}
+  .cta{padding:30px 18px}
+
+  /* The illustrations are square, so at full card width they eat most of the
+     screen. Cap and centre them on phones. */
+  .doodle-card{padding:16px}
+  .doodle-card img{max-width:210px;margin:0 auto}
+  .step-visual{padding:10px}
+  .step-visual img,.step-visual svg{max-width:140px;margin:0 auto}
+}

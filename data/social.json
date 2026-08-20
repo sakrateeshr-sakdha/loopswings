@@ -1,0 +1,56 @@
+[
+  {
+    "id": "soc_e251a6ca5cb1e5a8",
+    "platform": "instagram",
+    "url": "https://www.instagram.com/loopwingsmarketing/",
+    "label": "@loopswing",
+    "order": 1,
+    "published": true,
+    "createdAt": "2026-08-20T01:33:38.140Z"
+  },
+  {
+    "id": "soc_0ba3cb11ff66fdbd",
+    "platform": "facebook",
+    "url": "https://www.instagram.com/loopwingsmarketing/",
+    "label": "",
+    "order": 2,
+    "published": true,
+    "createdAt": "2026-08-20T01:34:12.578Z"
+  },
+  {
+    "id": "soc_01954245e53b430e",
+    "platform": "linkedin",
+    "url": "https://www.instagram.com/loopwingsmarketing/",
+    "label": "",
+    "order": 3,
+    "published": true,
+    "createdAt": "2026-08-20T01:34:52.922Z"
+  },
+  {
+    "id": "soc_1a0a5504ccb16c9c",
+    "platform": "youtube",
+    "url": "https://www.instagram.com/loopwingsmarketing/",
+    "label": "",
+    "order": 4,
+    "published": true,
+    "createdAt": "2026-08-20T01:35:01.484Z"
+  },
+  {
+    "id": "soc_9458e3a5cd7e292e",
+    "platform": "x",
+    "url": "https://www.instagram.com/loopwingsmarketing/",
+    "label": "",
+    "order": 5,
+    "published": true,
+    "createdAt": "2026-08-20T01:35:59.086Z"
+  },
+  {
+    "id": "soc_b2e4a090fbfe5d1b",
+    "platform": "whatsapp",
+    "url": "https://wa.me/8574859685",
+    "label": "",
+    "order": 6,
+    "published": true,
+    "createdAt": "2026-08-20T01:36:22.878Z"
+  }
+]

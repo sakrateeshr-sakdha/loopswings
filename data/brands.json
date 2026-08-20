@@ -1,0 +1,42 @@
+[
+  {
+    "id": "brd_traveltrex",
+    "name": "Crocs",
+    "location": "Kerala",
+    "logo": "/uploads/e834b77088b2a6ac615c.png",
+    "website": "",
+    "order": 1,
+    "published": true,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "brd_72137333563442ed",
+    "name": "Nike",
+    "location": "Coimbatore",
+    "logo": "/uploads/9d8602e4844d7e4bc75b.png",
+    "website": "",
+    "order": 2,
+    "published": true,
+    "createdAt": "2026-08-19T15:59:54.459Z"
+  },
+  {
+    "id": "brd_5dc2a6dede3f70cd",
+    "name": "Adidas",
+    "location": "CBE",
+    "logo": "/uploads/88acb73e89e657764fab.png",
+    "website": "",
+    "order": 3,
+    "published": true,
+    "createdAt": "2026-08-19T16:00:17.474Z"
+  },
+  {
+    "id": "brd_52e4e32de7e5450e",
+    "name": "Puma",
+    "location": "Chennai",
+    "logo": "/uploads/1193801702059cef5176.png",
+    "website": "",
+    "order": 4,
+    "published": true,
+    "createdAt": "2026-08-19T16:00:45.395Z"
+  }
+]
