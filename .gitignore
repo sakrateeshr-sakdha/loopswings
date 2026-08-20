@@ -8,3 +8,4 @@ public/uploads/*
 *.tsbuildinfo
 next-env.d.ts
 data/leads.json
+.claude/
