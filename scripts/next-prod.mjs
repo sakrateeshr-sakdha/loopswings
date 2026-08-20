@@ -22,9 +22,25 @@ if (!["build", "start"].includes(command)) {
 const require = createRequire(import.meta.url);
 const nextCli = require.resolve("next/dist/bin/next");
 
+// Hosted builds must use the default `.next`. A platform like Vercel reads
+// next.config.mjs in its own process to find the output directory, where this
+// variable isn't set — pointing the build elsewhere would leave it looking in
+// an empty `.next`. The dev/production split only matters on a local machine
+// where both run at once.
+const isHostedBuild = Boolean(
+  process.env.VERCEL || process.env.CI || process.env.NETLIFY || process.env.RENDER,
+);
+
+const env = { ...process.env };
+if (isHostedBuild) {
+  delete env.NEXT_DIST_DIR;
+} else {
+  env.NEXT_DIST_DIR = ".next-build";
+}
+
 const child = spawn(process.execPath, [nextCli, command, ...process.argv.slice(3)], {
   stdio: "inherit",
-  env: { ...process.env, NEXT_DIST_DIR: ".next-build" },
+  env,
 });
 
 child.on("exit", (code) => process.exit(code ?? 0));
