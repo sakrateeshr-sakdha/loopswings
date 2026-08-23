@@ -4,6 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import LeadForm from "@/components/LeadForm";
 import QuoteCard from "@/components/QuoteCard";
 import BrandGrid from "@/components/BrandGrid";
+import Rail from "@/components/Rail";
 import { getPublishedBrands,
   getPublishedSocial,
   getPublishedTestimonials,
@@ -20,7 +21,7 @@ export default async function LandingPage() {
     getPublishedTestimonials("written"),
     getPublishedSocial(),
   ]);
-  const featured = testimonials.filter((t) => t.featured).slice(0, 2);
+  const featured = testimonials.filter((t) => t.featured).slice(0, 4);
   // sameAs expects profile URLs, so mailto: and tel: links are left out.
   const socialUrls = social.map((s) => s.url).filter((u) => u.startsWith("http"));
 
@@ -54,7 +55,7 @@ export default async function LandingPage() {
           <div className="doodle-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/doodle-1.png"
+              src="/images/founder.png"
               alt="Many enquiries filtered down to high-quality enquiries and more bookings"
             />
           </div>
@@ -97,7 +98,7 @@ export default async function LandingPage() {
           </div>
           <div className="doodle-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/doodle-3.png" alt="A traveller who actually wants what you sell" />
+            <img src="/images/doodle-1.png" alt="Many enquiries filtered down to high-quality enquiries and more bookings" />
           </div>
         </div>
       </section>
@@ -166,7 +167,7 @@ export default async function LandingPage() {
               </div>
               <div className="step-visual">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/doodle-4.png" alt="" />
+                <img src="/images/doodle-3.png" alt="" />
               </div>
             </article>
 
@@ -393,11 +394,21 @@ export default async function LandingPage() {
             </div>
             {brands.length > 0 && <BrandGrid brands={brands.slice(0, 8)} />}
             {featured.length > 0 && (
-              <div className="quotes" style={{ marginTop: brands.length ? 22 : 0 }}>
-                {featured.map((item) => (
-                  <QuoteCard key={item.id} item={item} />
-                ))}
-              </div>
+              featured.length > 1 ? (
+                <div style={{ marginTop: brands.length ? 22 : 0 }}>
+                  <Rail label="written testimonials">
+                    {featured.map((item) => (
+                      <QuoteCard key={item.id} item={item} />
+                    ))}
+                  </Rail>
+                </div>
+              ) : (
+                <div className="quotes" style={{ marginTop: brands.length ? 22 : 0 }}>
+                  {featured.map((item) => (
+                    <QuoteCard key={item.id} item={item} />
+                  ))}
+                </div>
+              )
             )}
             <div style={{ marginTop: 28 }}>
               <Link className="btn ghost" href="/testimonials">
@@ -489,18 +500,9 @@ export default async function LandingPage() {
               If it doesn&rsquo;t, you&rsquo;re not locked in.
             </p>
           </div>
-          <div className="timeline">
-            {[
-              ["Days 1–15", "Strategy, offer selection, campaign build and creative production."],
-              ["Days 16–45", "Data collection, creative testing and early lead-quality feedback."],
-              ["Days 46–75", "Optimization around stronger signals, messages and audiences."],
-              ["Days 76–90", "Review performance, identify scale opportunities and next steps."],
-            ].map(([label, text]) => (
-              <div className="timeline-row" key={label}>
-                <strong>{label}</strong>
-                <span>{text}</span>
-              </div>
-            ))}
+          <div className="process-card">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/process.jpg" alt="The process I follow: Plan, Do, Check, Act" />
           </div>
         </div>
       </section>

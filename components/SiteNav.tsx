@@ -19,7 +19,8 @@ export default function SiteNav({ variant = "home" }: { variant?: "home" | "page
         <Link className="brand" href="/" onClick={close}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="brand-logo" src="/images/logo.png" alt="" />
-          LoopWings
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="brand-text" src="/images/logo-text.png" alt="LoopWings" />
         </Link>
 
         <button

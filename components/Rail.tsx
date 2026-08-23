@@ -16,6 +16,8 @@ export default function Rail({
   const ref = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(true);
+  const [scrolling, setScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const sync = useCallback(() => {
     const el = ref.current;
@@ -25,21 +27,35 @@ export default function Rail({
     setAtEnd(el.scrollLeft >= max - 2);
   }, []);
 
+  const handleScroll = useCallback(() => {
+    sync();
+    setScrolling(true);
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    scrollTimeoutRef.current = setTimeout(() => {
+      setScrolling(false);
+    }, 800);
+  }, [sync]);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     sync();
-    el.addEventListener("scroll", sync, { passive: true });
+    el.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", sync);
     // Card widths change as images finish loading.
     const observer = new ResizeObserver(sync);
     observer.observe(el);
     return () => {
-      el.removeEventListener("scroll", sync);
+      el.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", sync);
       observer.disconnect();
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
-  }, [sync]);
+  }, [sync, handleScroll]);
 
   const step = (direction: 1 | -1) => {
     const el = ref.current;
@@ -66,7 +82,7 @@ export default function Rail({
 
   return (
     <div className="rail-wrap">
-      <div className="rail" ref={ref}>
+      <div className={`rail ${scrolling ? "is-scrolling" : ""}`} ref={ref}>
         {Children.map(children, (child, i) => (
           // Each card sits in a full-column cell. The cell carries the snap
           // point, so a narrower card centred inside it still snaps flush to

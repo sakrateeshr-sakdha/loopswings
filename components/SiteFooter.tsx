@@ -14,13 +14,10 @@ export default async function SiteFooter() {
             <Link className="brand" href="/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className="brand-logo" src="/images/logo.png" alt="" />
-              LoopWings
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="brand-text" src="/images/logo-text.png" alt="LoopWings" />
             </Link>
             <small>Meta Ads Lead Generation for Travel Agencies</small>
-          </div>
-          <div className="footer-links">
-            <Link href="/testimonials">Testimonials</Link>
-            <Link href="/admin">Admin</Link>
           </div>
           <small>&copy; LoopWings</small>
         </div>

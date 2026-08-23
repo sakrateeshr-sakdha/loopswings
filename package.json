@@ -20,6 +20,8 @@
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
+    "jpeg-js": "^0.4.4",
+    "pngjs": "^7.0.0",
     "typescript": "^5.8.3"
   }
 }

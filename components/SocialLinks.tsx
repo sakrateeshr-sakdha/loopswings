@@ -83,7 +83,7 @@ export default function SocialLinks({ links }: { links: SocialLink[] }) {
   return (
     <div className="social">
       <div className="wrap social-inner">
-        <span className="social-title">Follow LoopWings</span>
+        <span className="social-title">Follow @</span>
         <ul className="social-list">
           {links.map((link) => {
             const name = link.label || PLATFORM_LABELS[link.platform];

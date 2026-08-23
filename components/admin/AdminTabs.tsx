@@ -27,7 +27,8 @@ export default function AdminTabs() {
         <Link className="brand" href="/">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="brand-logo" src="/images/logo.png" alt="" />
-          LoopWings
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="brand-text" src="/images/logo-text.png" alt="LoopWings" />
         </Link>
         <nav className="adm-tabs">
           {TABS.map((tab) => (

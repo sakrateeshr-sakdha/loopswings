@@ -30,7 +30,8 @@
   gap: 6px;
   flex-wrap: wrap;
 }
-.adm-tabs a {
+.adm-tabs a,
+.adm-tabs button {
   text-decoration: none;
   font-weight: 700;
   font-size: 14px;
@@ -38,11 +39,16 @@
   border-radius: 999px;
   border: 1.5px solid transparent;
   color: #444;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
 }
-.adm-tabs a:hover {
+.adm-tabs a:hover,
+.adm-tabs button:hover {
   background: #f2f2f2;
 }
-.adm-tabs a.active {
+.adm-tabs a.active,
+.adm-tabs button.active {
   background: var(--gold-soft);
   border-color: var(--ink);
   color: var(--ink);

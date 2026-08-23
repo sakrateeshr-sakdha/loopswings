@@ -41,11 +41,11 @@
     "location": "Coimbatore",
     "avatar": "/uploads/4022d4753637264944af.png",
     "videoUrl": "https://www.youtube.com/shorts/bOreolmPxSI",
-    "featured": false,
+    "featured": true,
     "order": 3,
     "published": true,
     "createdAt": "2026-08-19T14:55:13.097Z",
-    "orientation": "landscape"
+    "orientation": "portrait"
   },
   {
     "id": "tst_a11bda116b5ef302",
@@ -62,5 +62,21 @@
     "order": 4,
     "published": true,
     "createdAt": "2026-08-20T00:27:20.629Z"
+  },
+  {
+    "id": "tst_739fcbbe48d6ab73",
+    "type": "written",
+    "quote": "“Add Abdul Ali TP's real testimonial here. Keep it specific and focused on lead quality, communication or campaign performance.”",
+    "author": "Testing",
+    "role": "Founder",
+    "company": "QA",
+    "location": "CBE",
+    "avatar": "",
+    "videoUrl": "",
+    "orientation": "landscape",
+    "featured": true,
+    "order": 5,
+    "published": true,
+    "createdAt": "2026-08-23T12:34:57.937Z"
   }
 ]

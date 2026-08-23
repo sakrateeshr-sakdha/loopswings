@@ -38,7 +38,8 @@ export default function LoginPage() {
         <div className="brand" style={{ marginBottom: 18 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="brand-logo" src="/images/logo.png" alt="" />
-          LoopWings
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="brand-text" src="/images/logo-text.png" alt="LoopWings" />
         </div>
         <h1 style={{ fontSize: 26 }}>Admin sign in</h1>
         <p className="adm-hint" style={{ margin: "8px 0 20px" }}>

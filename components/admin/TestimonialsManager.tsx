@@ -35,6 +35,19 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
+  const [statusFilter, setStatusFilter] = useState<"all" | "published" | "unpublished">("all");
+  const [typeFilter, setTypeFilter] = useState<"all" | "written" | "video">("all");
+
+  const filteredItems = items.filter((item) => {
+    const matchesStatus =
+      statusFilter === "all" ||
+      (statusFilter === "published" && item.published) ||
+      (statusFilter === "unpublished" && !item.published);
+    const matchesType =
+      typeFilter === "all" || item.type === typeFilter;
+    return matchesStatus && matchesType;
+  });
+
   function startCreate() {
     setEditingId("new");
     setDraft({ ...BLANK, order: items.length + 1 });
@@ -278,13 +291,73 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
         </button>
       </div>
 
+      <div className="adm-filters" style={{ display: "flex", gap: "24px", marginBottom: "20px", flexWrap: "wrap", borderBottom: "1.5px solid #eee", paddingBottom: "16px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ fontSize: "13px", fontWeight: 800, color: "#666" }}>Status:</span>
+          <div className="adm-tabs">
+            <button
+              type="button"
+              className={statusFilter === "all" ? "active" : ""}
+              onClick={() => setStatusFilter("all")}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              className={statusFilter === "published" ? "active" : ""}
+              onClick={() => setStatusFilter("published")}
+            >
+              Published
+            </button>
+            <button
+              type="button"
+              className={statusFilter === "unpublished" ? "active" : ""}
+              onClick={() => setStatusFilter("unpublished")}
+            >
+              Unpublished
+            </button>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ fontSize: "13px", fontWeight: 800, color: "#666" }}>Type:</span>
+          <div className="adm-tabs">
+            <button
+              type="button"
+              className={typeFilter === "all" ? "active" : ""}
+              onClick={() => setTypeFilter("all")}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              className={typeFilter === "written" ? "active" : ""}
+              onClick={() => setTypeFilter("written")}
+            >
+              Written
+            </button>
+            <button
+              type="button"
+              className={typeFilter === "video" ? "active" : ""}
+              onClick={() => setTypeFilter("video")}
+            >
+              Video
+            </button>
+          </div>
+        </div>
+      </div>
+
       {editingId === "new" && editor}
 
       {items.length === 0 && !draft && (
         <div className="adm-empty">No testimonials yet. Add your first one.</div>
       )}
 
-      {items.map((item) =>
+      {items.length > 0 && filteredItems.length === 0 && !draft && (
+        <div className="adm-empty">No testimonials found matching the filter.</div>
+      )}
+
+      {filteredItems.map((item) =>
         editingId === item.id ? (
           <div key={item.id}>{editor}</div>
         ) : (
