@@ -154,8 +154,13 @@ function mapRow<N extends Name>(name: N, row: any): Collections[N] {
 
 export async function readAll<N extends Name>(name: N): Promise<Collections[N][]> {
   if (pool) {
-    const res = await pool.query(`SELECT * FROM "${name}"`);
-    return res.rows.map((row) => mapRow(name, row));
+    try {
+      const res = await pool.query(`SELECT * FROM "${name}"`);
+      return res.rows.map((row) => mapRow(name, row));
+    } catch (err) {
+      console.error(`Database readAll error for collection "${name}":`, err);
+      throw err;
+    }
   }
 
   try {
@@ -164,6 +169,7 @@ export async function readAll<N extends Name>(name: N): Promise<Collections[N][]
     return Array.isArray(parsed) ? (parsed as Collections[N][]) : [];
   } catch (err) {
     if ((err as NodeJS.ErrnoException).code === "ENOENT") return [];
+    console.error(`File readAll error for collection "${name}":`, err);
     throw err;
   }
 }
@@ -198,6 +204,7 @@ async function writeAll<N extends Name>(name: N, rows: Collections[N][]) {
       }
       await client.query("COMMIT");
     } catch (err) {
+      console.error(`Database writeAll transaction error for collection "${name}":`, err);
       await client.query("ROLLBACK");
       throw err;
     } finally {
@@ -216,10 +223,15 @@ export function mutate<N extends Name, R>(
   fn: (rows: Collections[N][]) => R | Promise<R>,
 ): Promise<R> {
   const run = async (): Promise<R> => {
-    const rows = await readAll(name);
-    const result = await fn(rows);
-    await writeAll(name, rows);
-    return result;
+    try {
+      const rows = await readAll(name);
+      const result = await fn(rows);
+      await writeAll(name, rows);
+      return result;
+    } catch (err) {
+      console.error(`Mutation failed for collection "${name}":`, err);
+      throw err;
+    }
   };
   const chained = (writeQueue.get(name) ?? Promise.resolve()).then(run, run);
   writeQueue.set(name, chained.catch(() => undefined));
