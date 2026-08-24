@@ -9,7 +9,8 @@ import type { Brand, Lead, SocialLink, Testimonial } from "./types";
 import testimonialsSeed from "../data/testimonials.json";
 import brandsSeed from "../data/brands.json";
 import socialSeed from "../data/social.json";
-import leadsSeed from "../data/leads.json";
+
+const leadsSeed: any[] = [];
 
 const DATA_DIR = path.join(process.cwd(), "data");
 
