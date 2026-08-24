@@ -37,17 +37,32 @@ export async function POST(req: Request) {
   // Random name
   const name = `${crypto.randomBytes(10).toString("hex")}${ext}`;
 
-  // If token is defined, upload directly to Vercel Blob
+  const isVercel = process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
   const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
-  if (blobToken) {
-    const blob = await put(`uploads/${name}`, file, {
-      access: "public",
-      token: blobToken,
-    });
-    return Response.json({ url: blob.url }, { status: 201 });
+
+  // Fail explicitly in production if Blob token is missing to prevent broken local fallbacks
+  if (isVercel && !blobToken) {
+    return Response.json(
+      { error: "Vercel Blob store token is missing. Please ensure you checked 'Add a read-write token env var' when linking your Blob store, and redeploy your project on Vercel." },
+      { status: 500 }
+    );
   }
 
-  // Local fallback
+  // If token is defined, upload directly to Vercel Blob
+  if (blobToken) {
+    try {
+      const blob = await put(`uploads/${name}`, file, {
+        access: "public",
+        token: blobToken,
+      });
+      return Response.json({ url: blob.url }, { status: 201 });
+    } catch (err: any) {
+      console.error("Vercel Blob upload error:", err);
+      return Response.json({ error: `Vercel Blob upload failed: ${err.message || err}` }, { status: 500 });
+    }
+  }
+
+  // Local fallback (only for local development)
   const dir = path.join(process.cwd(), "public", "uploads");
   await fs.mkdir(dir, { recursive: true });
   await fs.writeFile(path.join(dir, name), Buffer.from(await file.arrayBuffer()));

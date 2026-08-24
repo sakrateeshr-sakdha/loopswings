@@ -41,7 +41,15 @@ function getSeedData<N extends Name>(name: N): Collections[N][] {
 }
 
 export async function readAll<N extends Name>(name: N): Promise<Collections[N][]> {
+  const isVercel = process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
   const token = process.env.BLOB_READ_WRITE_TOKEN;
+
+  if (isVercel && !token) {
+    const errMsg = "Vercel Blob store token is missing. Please ensure your Vercel project is linked to your Blob store and redeployed.";
+    console.error(errMsg);
+    throw new Error(errMsg);
+  }
+
   if (token) {
     try {
       const prefix = `data/${name}.json`;
@@ -83,7 +91,15 @@ export async function readAll<N extends Name>(name: N): Promise<Collections[N][]
 }
 
 async function writeAll<N extends Name>(name: N, rows: Collections[N][]) {
+  const isVercel = process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
   const token = process.env.BLOB_READ_WRITE_TOKEN;
+
+  if (isVercel && !token) {
+    const errMsg = "Vercel Blob store token is missing. Please ensure your Vercel project is linked to your Blob store and redeployed.";
+    console.error(errMsg);
+    throw new Error(errMsg);
+  }
+
   if (token) {
     try {
       await put(`data/${name}.json`, JSON.stringify(rows, null, 2), {
