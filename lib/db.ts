@@ -5,6 +5,12 @@ import crypto from "crypto";
 import { put, list } from "@vercel/blob";
 import type { Brand, Lead, SocialLink, Testimonial } from "./types";
 
+// Static JSON imports to ensure Next.js bundles the seed data in serverless environments
+import testimonialsSeed from "../data/testimonials.json";
+import brandsSeed from "../data/brands.json";
+import socialSeed from "../data/social.json";
+import leadsSeed from "../data/leads.json";
+
 const DATA_DIR = path.join(process.cwd(), "data");
 
 type Collections = {
@@ -26,6 +32,13 @@ function fileFor(name: Name) {
   return path.join(DATA_DIR, `${name}.json`);
 }
 
+function getSeedData<N extends Name>(name: N): Collections[N][] {
+  if (name === "brands") return brandsSeed as any;
+  if (name === "testimonials") return testimonialsSeed as any;
+  if (name === "leads") return leadsSeed as any;
+  return socialSeed as any;
+}
+
 export async function readAll<N extends Name>(name: N): Promise<Collections[N][]> {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   if (token) {
@@ -41,11 +54,9 @@ export async function readAll<N extends Name>(name: N): Promise<Collections[N][]
         }
       }
 
-      // If no blob exists in the cloud store yet, upload seed file from local disk
-      console.log(`Blob ${prefix} not found. Uploading seed file from local disk.`);
-      const raw = await fs.readFile(fileFor(name), "utf8");
-      const parsed = JSON.parse(raw);
-      const rows = Array.isArray(parsed) ? (parsed as Collections[N][]) : [];
+      // If no blob exists in the cloud store yet, upload seed file using static imports
+      console.log(`Blob ${prefix} not found. Uploading seed file.`);
+      const rows = getSeedData(name);
 
       await put(prefix, JSON.stringify(rows, null, 2), {
         access: "public",
