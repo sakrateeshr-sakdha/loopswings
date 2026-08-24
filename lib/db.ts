@@ -2,6 +2,7 @@ import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
 import crypto from "crypto";
+import { put, list } from "@vercel/blob";
 import type { Brand, Lead, SocialLink, Testimonial } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -26,6 +27,38 @@ function fileFor(name: Name) {
 }
 
 export async function readAll<N extends Name>(name: N): Promise<Collections[N][]> {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (token) {
+    try {
+      const prefix = `data/${name}.json`;
+      const { blobs } = await list({ prefix, token });
+      const exactMatch = blobs.find((b) => b.pathname === prefix);
+      if (exactMatch) {
+        const res = await fetch(exactMatch.url, { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          return Array.isArray(data) ? (data as Collections[N][]) : [];
+        }
+      }
+
+      // If no blob exists in the cloud store yet, upload seed file from local disk
+      console.log(`Blob ${prefix} not found. Uploading seed file from local disk.`);
+      const raw = await fs.readFile(fileFor(name), "utf8");
+      const parsed = JSON.parse(raw);
+      const rows = Array.isArray(parsed) ? (parsed as Collections[N][]) : [];
+
+      await put(prefix, JSON.stringify(rows, null, 2), {
+        access: "public",
+        addRandomSuffix: false,
+        token,
+      });
+
+      return rows;
+    } catch (err) {
+      console.error(`Error reading ${name}.json from Vercel Blob:`, err);
+    }
+  }
+
   try {
     const raw = await fs.readFile(fileFor(name), "utf8");
     const parsed = JSON.parse(raw);
@@ -37,11 +70,22 @@ export async function readAll<N extends Name>(name: N): Promise<Collections[N][]
 }
 
 async function writeAll<N extends Name>(name: N, rows: Collections[N][]) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (token) {
+    try {
+      await put(`data/${name}.json`, JSON.stringify(rows, null, 2), {
+        access: "public",
+        addRandomSuffix: false,
+        token,
+      });
+      return;
+    } catch (err) {
+      console.error(`Error writing ${name}.json to Vercel Blob:`, err);
+      throw err;
+    }
+  }
+
   await fs.mkdir(DATA_DIR, { recursive: true });
-  // Written in place rather than via a temp file + rename: creating and removing
-  // files inside the project makes the Next dev server rescan its route manifest,
-  // which intermittently drops dynamic API routes until a restart. Writes are
-  // serialized through `mutate`, so there is never more than one in flight.
   await fs.writeFile(fileFor(name), JSON.stringify(rows, null, 2), "utf8");
 }
 
@@ -57,7 +101,6 @@ export function mutate<N extends Name, R>(
     return result;
   };
   const chained = (writeQueue.get(name) ?? Promise.resolve()).then(run, run);
-  // Keep the queue alive even if this mutation rejected.
   writeQueue.set(name, chained.catch(() => undefined));
   return chained;
 }
