@@ -62,6 +62,7 @@ export async function readAll<N extends Name>(name: N): Promise<Collections[N][]
       await put(prefix, JSON.stringify(rows, null, 2), {
         access: "public",
         addRandomSuffix: false,
+        allowOverwrite: true,
         token,
       });
 
@@ -88,6 +89,7 @@ async function writeAll<N extends Name>(name: N, rows: Collections[N][]) {
       await put(`data/${name}.json`, JSON.stringify(rows, null, 2), {
         access: "public",
         addRandomSuffix: false,
+        allowOverwrite: true,
         token,
       });
       return;
