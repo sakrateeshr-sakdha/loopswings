@@ -2,6 +2,9 @@ import { requireAuth } from "@/lib/auth";
 import { mutate } from "@/lib/db";
 import { socialFromBody } from "@/lib/shape";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function PUT(req: Request, { params }: Ctx) {

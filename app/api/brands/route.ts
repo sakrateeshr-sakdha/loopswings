@@ -3,10 +3,17 @@ import { mutate, newId, readAll, sortByOrder } from "@/lib/db";
 import { brandFromBody } from "@/lib/shape";
 import type { Brand } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   const denied = await requireAuth();
   if (denied) return denied;
-  return Response.json(sortByOrder(await readAll("brands")));
+  return Response.json(sortByOrder(await readAll("brands")), {
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    },
+  });
 }
 
 export async function POST(req: Request) {

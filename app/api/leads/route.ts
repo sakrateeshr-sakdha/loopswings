@@ -4,11 +4,18 @@ import { str } from "@/lib/validate";
 import { sendEnquiryNotification } from "@/lib/mailer";
 import type { Lead } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   const denied = await requireAuth();
   if (denied) return denied;
   const rows = await readAll("leads");
-  return Response.json([...rows].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
+  return Response.json([...rows].sort((a, b) => b.createdAt.localeCompare(a.createdAt)), {
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    },
+  });
 }
 
 /** Public — this is the enquiry form on the landing and testimonials pages. */

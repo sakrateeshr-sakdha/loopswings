@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ImageUpload from "./ImageUpload";
+import { useToast } from "./ToastContext";
 import type { Testimonial } from "@/lib/types";
 
 type Draft = Omit<Testimonial, "id" | "createdAt">;
@@ -29,11 +30,16 @@ function toDraft(item: Testimonial): Draft {
 
 export default function TestimonialsManager({ initial }: { initial: Testimonial[] }) {
   const router = useRouter();
+  const { toast } = useToast();
   const [items, setItems] = useState(initial);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    setItems(initial);
+  }, [initial]);
 
   const [statusFilter, setStatusFilter] = useState<"all" | "published" | "unpublished">("all");
   const [typeFilter, setTypeFilter] = useState<"all" | "written" | "video">("all");
@@ -71,9 +77,13 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
   }
 
   async function refresh() {
-    const res = await fetch("/api/testimonials");
-    if (res.ok) setItems(await res.json());
-    router.refresh();
+    try {
+      const res = await fetch(`/api/testimonials?t=${Date.now()}`, { cache: "no-store" });
+      if (res.ok) setItems(await res.json());
+      router.refresh();
+    } catch {
+      router.refresh();
+    }
   }
 
   async function save() {
@@ -92,10 +102,13 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
       );
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.error || "Could not save");
+      toast.success(creating ? "Testimonial created successfully" : "Testimonial updated successfully");
       await refresh();
       cancel();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not save");
+      const msg = err instanceof Error ? err.message : "Could not save";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -104,12 +117,29 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
   async function remove(item: Testimonial) {
     if (!confirm(`Delete the testimonial from ${item.author}? This cannot be undone.`)) return;
     setBusy(true);
+    setError("");
+
+    // Optimistically update list so the item is removed immediately
+    const prevItems = items;
+    setItems((prev) => prev.filter((i) => i.id !== item.id));
+
     try {
-      const res = await fetch(`/api/testimonials/${item.id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Could not delete");
+      const res = await fetch(`/api/testimonials/${encodeURIComponent(item.id)}`, {
+        method: "DELETE",
+        headers: { "Cache-Control": "no-cache" },
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || "Could not delete");
+      }
+      toast.success(`Testimonial from ${item.author} deleted successfully`);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not delete");
+      // Revert if delete failed
+      setItems(prevItems);
+      const msg = err instanceof Error ? err.message : "Could not delete";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -118,12 +148,18 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
   async function togglePublished(item: Testimonial) {
     setBusy(true);
     try {
-      await fetch(`/api/testimonials/${item.id}`, {
+      const nextPublished = !item.published;
+      const res = await fetch(`/api/testimonials/${encodeURIComponent(item.id)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...toDraft(item), published: !item.published }),
+        body: JSON.stringify({ ...toDraft(item), published: nextPublished }),
       });
+      if (!res.ok) throw new Error("Could not update status");
+      toast.success(nextPublished ? "Testimonial published" : "Testimonial unpublished");
       await refresh();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Could not update status";
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -346,6 +382,12 @@ export default function TestimonialsManager({ initial }: { initial: Testimonial[
           </div>
         </div>
       </div>
+
+      {error && !draft && (
+        <div className="adm-card" style={{ borderColor: "#b3261e", background: "#fff5f5", marginBottom: 20 }}>
+          <p className="adm-error" style={{ margin: 0 }}>{error}</p>
+        </div>
+      )}
 
       {editingId === "new" && editor}
 

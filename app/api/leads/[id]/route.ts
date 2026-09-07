@@ -2,6 +2,9 @@ import { requireAuth } from "@/lib/auth";
 import { mutate } from "@/lib/db";
 import { bool } from "@/lib/validate";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function PATCH(req: Request, { params }: Ctx) {

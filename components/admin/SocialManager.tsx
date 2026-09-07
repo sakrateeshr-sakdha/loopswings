@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { PLATFORM_LABELS } from "@/components/SocialLinks";
+import { useToast } from "./ToastContext";
 import type { SocialLink, SocialPlatform } from "@/lib/types";
 
 type Draft = Omit<SocialLink, "id" | "createdAt">;
@@ -38,11 +39,16 @@ function toDraft(item: SocialLink): Draft {
 
 export default function SocialManager({ initial }: { initial: SocialLink[] }) {
   const router = useRouter();
+  const { toast } = useToast();
   const [items, setItems] = useState(initial);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    setItems(initial);
+  }, [initial]);
 
   function startCreate() {
     setEditingId("new");
@@ -67,9 +73,13 @@ export default function SocialManager({ initial }: { initial: SocialLink[] }) {
   }
 
   async function refresh() {
-    const res = await fetch("/api/social");
-    if (res.ok) setItems(await res.json());
-    router.refresh();
+    try {
+      const res = await fetch(`/api/social?t=${Date.now()}`, { cache: "no-store" });
+      if (res.ok) setItems(await res.json());
+      router.refresh();
+    } catch {
+      router.refresh();
+    }
   }
 
   async function save() {
@@ -85,10 +95,13 @@ export default function SocialManager({ initial }: { initial: SocialLink[] }) {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.error || "Could not save");
+      toast.success(creating ? "Social link added successfully" : "Social link updated successfully");
       await refresh();
       cancel();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not save");
+      const msg = err instanceof Error ? err.message : "Could not save";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -97,12 +110,29 @@ export default function SocialManager({ initial }: { initial: SocialLink[] }) {
   async function remove(item: SocialLink) {
     if (!confirm(`Remove the ${PLATFORM_LABELS[item.platform]} link?`)) return;
     setBusy(true);
+    setError("");
+
+    // Optimistically update list so the item is removed immediately
+    const prevItems = items;
+    setItems((prev) => prev.filter((i) => i.id !== item.id));
+
     try {
-      const res = await fetch(`/api/social/${item.id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Could not delete");
+      const res = await fetch(`/api/social/${encodeURIComponent(item.id)}`, {
+        method: "DELETE",
+        headers: { "Cache-Control": "no-cache" },
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || "Could not delete");
+      }
+      toast.success(`${PLATFORM_LABELS[item.platform]} link deleted successfully`);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not delete");
+      // Revert if delete failed
+      setItems(prevItems);
+      const msg = err instanceof Error ? err.message : "Could not delete";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -111,12 +141,18 @@ export default function SocialManager({ initial }: { initial: SocialLink[] }) {
   async function togglePublished(item: SocialLink) {
     setBusy(true);
     try {
-      await fetch(`/api/social/${item.id}`, {
+      const nextPublished = !item.published;
+      const res = await fetch(`/api/social/${encodeURIComponent(item.id)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...toDraft(item), published: !item.published }),
+        body: JSON.stringify({ ...toDraft(item), published: nextPublished }),
       });
+      if (!res.ok) throw new Error("Could not update status");
+      toast.success(nextPublished ? "Social link published" : "Social link unpublished");
       await refresh();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Could not update status";
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -221,6 +257,12 @@ export default function SocialManager({ initial }: { initial: SocialLink[] }) {
           + Add link
         </button>
       </div>
+
+      {error && !draft && (
+        <div className="adm-card" style={{ borderColor: "#b3261e", background: "#fff5f5", marginBottom: 20 }}>
+          <p className="adm-error" style={{ margin: 0 }}>{error}</p>
+        </div>
+      )}
 
       {editingId === "new" && editor}
 

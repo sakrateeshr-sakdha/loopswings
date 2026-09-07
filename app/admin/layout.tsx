@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { isAuthed } from "@/lib/auth";
 import AdminTabs from "@/components/admin/AdminTabs";
+import { ToastProvider } from "@/components/admin/ToastContext";
 import "../admin.css";
 
 export const dynamic = "force-dynamic";
@@ -12,9 +13,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!(await isAuthed())) redirect("/login");
 
   return (
-    <div className="adm-shell">
-      <AdminTabs />
-      <main className="adm-main">{children}</main>
-    </div>
+    <ToastProvider>
+      <div className="adm-shell">
+        <AdminTabs />
+        <main className="adm-main">{children}</main>
+      </div>
+    </ToastProvider>
   );
 }
+

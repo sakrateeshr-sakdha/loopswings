@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ImageUpload from "./ImageUpload";
+import { useToast } from "./ToastContext";
 import type { Brand } from "@/lib/types";
 
 type Draft = Omit<Brand, "id" | "createdAt">;
@@ -23,11 +24,16 @@ function toDraft(item: Brand): Draft {
 
 export default function BrandsManager({ initial }: { initial: Brand[] }) {
   const router = useRouter();
+  const { toast } = useToast();
   const [items, setItems] = useState(initial);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    setItems(initial);
+  }, [initial]);
 
   function startCreate() {
     setEditingId("new");
@@ -52,9 +58,13 @@ export default function BrandsManager({ initial }: { initial: Brand[] }) {
   }
 
   async function refresh() {
-    const res = await fetch("/api/brands");
-    if (res.ok) setItems(await res.json());
-    router.refresh();
+    try {
+      const res = await fetch(`/api/brands?t=${Date.now()}`, { cache: "no-store" });
+      if (res.ok) setItems(await res.json());
+      router.refresh();
+    } catch {
+      router.refresh();
+    }
   }
 
   async function save() {
@@ -70,10 +80,13 @@ export default function BrandsManager({ initial }: { initial: Brand[] }) {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.error || "Could not save");
+      toast.success(creating ? "Agency added successfully" : "Agency updated successfully");
       await refresh();
       cancel();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not save");
+      const msg = err instanceof Error ? err.message : "Could not save";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -82,12 +95,29 @@ export default function BrandsManager({ initial }: { initial: Brand[] }) {
   async function remove(item: Brand) {
     if (!confirm(`Remove ${item.name} from the brand grid?`)) return;
     setBusy(true);
+    setError("");
+
+    // Optimistically update list so the item is removed immediately
+    const prevItems = items;
+    setItems((prev) => prev.filter((i) => i.id !== item.id));
+
     try {
-      const res = await fetch(`/api/brands/${item.id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Could not delete");
+      const res = await fetch(`/api/brands/${encodeURIComponent(item.id)}`, {
+        method: "DELETE",
+        headers: { "Cache-Control": "no-cache" },
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || "Could not delete");
+      }
+      toast.success(`Agency "${item.name}" deleted successfully`);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not delete");
+      // Revert if delete failed
+      setItems(prevItems);
+      const msg = err instanceof Error ? err.message : "Could not delete";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -96,12 +126,18 @@ export default function BrandsManager({ initial }: { initial: Brand[] }) {
   async function togglePublished(item: Brand) {
     setBusy(true);
     try {
-      await fetch(`/api/brands/${item.id}`, {
+      const nextPublished = !item.published;
+      const res = await fetch(`/api/brands/${encodeURIComponent(item.id)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...toDraft(item), published: !item.published }),
+        body: JSON.stringify({ ...toDraft(item), published: nextPublished }),
       });
+      if (!res.ok) throw new Error("Could not update status");
+      toast.success(nextPublished ? "Agency published" : "Agency unpublished");
       await refresh();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Could not update status";
+      toast.error(msg);
     } finally {
       setBusy(false);
     }
@@ -194,6 +230,12 @@ export default function BrandsManager({ initial }: { initial: Brand[] }) {
           + Add agency
         </button>
       </div>
+
+      {error && !draft && (
+        <div className="adm-card" style={{ borderColor: "#b3261e", background: "#fff5f5", marginBottom: 20 }}>
+          <p className="adm-error" style={{ margin: 0 }}>{error}</p>
+        </div>
+      )}
 
       {editingId === "new" && editor}
 

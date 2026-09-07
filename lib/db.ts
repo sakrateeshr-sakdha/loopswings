@@ -56,7 +56,8 @@ export async function readAll<N extends Name>(name: N): Promise<Collections[N][]
       const { blobs } = await list({ prefix, token });
       const exactMatch = blobs.find((b) => b.pathname === prefix);
       if (exactMatch) {
-        const res = await fetch(exactMatch.url, { cache: "no-store" });
+        const sep = exactMatch.url.includes("?") ? "&" : "?";
+        const res = await fetch(`${exactMatch.url}${sep}t=${Date.now()}`, { cache: "no-store" });
         if (res.ok) {
           const data = await res.json();
           return Array.isArray(data) ? (data as Collections[N][]) : [];

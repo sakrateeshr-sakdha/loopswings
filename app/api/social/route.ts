@@ -3,10 +3,17 @@ import { mutate, newId, readAll, sortByOrder } from "@/lib/db";
 import { socialFromBody } from "@/lib/shape";
 import type { SocialLink } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   const denied = await requireAuth();
   if (denied) return denied;
-  return Response.json(sortByOrder(await readAll("social")));
+  return Response.json(sortByOrder(await readAll("social")), {
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    },
+  });
 }
 
 export async function POST(req: Request) {
