@@ -45,12 +45,13 @@ export default function SiteNav({ variant = "home" }: { variant?: "home" | "page
           <a href={`${prefix}#fit`} onClick={close}>
             Who it&rsquo;s for
           </a>
-          <Link href="/testimonials" onClick={close}>
-            Testimonials
-          </Link>
+
           <a href={`${prefix}#faq`} onClick={close}>
             FAQ
           </a>
+          <Link href="/testimonials" onClick={close}>
+            Testimonials
+          </Link>
           <a className="btn gold" href={`${prefix}#apply`} onClick={close}>
             Get more quality leads &rarr;
           </a>

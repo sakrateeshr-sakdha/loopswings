@@ -78,5 +78,21 @@
     "order": 5,
     "published": true,
     "createdAt": "2026-08-23T12:34:57.937Z"
+  },
+  {
+    "id": "tst_917c3b8da92c747a",
+    "type": "video",
+    "quote": "",
+    "author": "QA Testing",
+    "role": "Founder",
+    "company": "FT-Commerce",
+    "location": "Coimbatore, Tamil Nadu, India",
+    "avatar": "/uploads/369341f255a831db7190.png",
+    "videoUrl": "https://www.youtube.com/shorts/zj6ETjdYTNY?feature=share",
+    "orientation": "portrait",
+    "featured": true,
+    "order": 6,
+    "published": true,
+    "createdAt": "2026-09-06T11:38:46.472Z"
   }
 ]

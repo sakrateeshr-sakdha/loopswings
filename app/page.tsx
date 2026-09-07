@@ -2,10 +2,11 @@ import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import LeadForm from "@/components/LeadForm";
-import QuoteCard from "@/components/QuoteCard";
+import VideoTestimonial from "@/components/VideoTestimonial";
 import BrandGrid from "@/components/BrandGrid";
 import Rail from "@/components/Rail";
-import { getPublishedBrands,
+import {
+  getPublishedBrands,
   getPublishedSocial,
   getPublishedTestimonials,
 } from "@/lib/db";
@@ -16,12 +17,13 @@ import { FaqSchema, OrganizationSchema } from "@/components/StructuredData";
 export const dynamic = "force-dynamic";
 
 export default async function LandingPage() {
-  const [brands, testimonials, social] = await Promise.all([
+  const [brands, videoTestimonials, social] = await Promise.all([
     getPublishedBrands(),
-    getPublishedTestimonials("written"),
+    getPublishedTestimonials("video"),
     getPublishedSocial(),
   ]);
-  const featured = testimonials.filter((t) => t.featured).slice(0, 4);
+  const featured = videoTestimonials.filter((t) => t.featured);
+  const displayVideos = featured.length > 0 ? featured : videoTestimonials;
   // sameAs expects profile URLs, so mailto: and tel: links are left out.
   const socialUrls = social.map((s) => s.url).filter((u) => u.startsWith("http"));
 
@@ -52,7 +54,7 @@ export default async function LandingPage() {
               </span>
             </div>
           </div>
-          <div className="doodle-card">
+          <div className="doodle-card hero-doodle-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/founder.png"
@@ -242,7 +244,7 @@ export default async function LandingPage() {
                 </g>
               </svg>
               <div>
-                <h3>Meta Ads Strategy</h3>
+                <h3>Ad Strategy</h3>
                 <p>Campaign planning built around your travel offer and business objective.</p>
               </div>
             </div>
@@ -256,7 +258,7 @@ export default async function LandingPage() {
               </svg>
               <div>
                 <h3>Ad Creatives</h3>
-                <p>Creative concepts, hooks, copy and ad variations designed for Meta.</p>
+                <p>Creative concepts, hooks, copy and ad variations designed specifically to attract the right travellers on Meta.</p>
               </div>
             </div>
             <div className="handle-card">
@@ -269,7 +271,7 @@ export default async function LandingPage() {
               </svg>
               <div>
                 <h3>Campaign Setup</h3>
-                <p>Campaigns, ad sets and ads built correctly from the beginning.</p>
+                <p>Campaigns, ad sets, and ads structured correctly from the start for optimal performance.</p>
               </div>
             </div>
             <div className="handle-card">
@@ -283,7 +285,7 @@ export default async function LandingPage() {
                 </g>
               </svg>
               <div>
-                <h3>Campaign Management</h3>
+                <h3>Ad Management</h3>
                 <p>
                   I monitor performance and make optimization decisions throughout the campaign.
                 </p>
@@ -312,7 +314,7 @@ export default async function LandingPage() {
                 </g>
               </svg>
               <div>
-                <h3>Lead Quality Optimization</h3>
+                <h3>Lead Optimization</h3>
                 <p>
                   Campaign performance + actual enquiry feedback used to improve incoming lead
                   quality.
@@ -327,7 +329,7 @@ export default async function LandingPage() {
                 </g>
               </svg>
               <div>
-                <h3>Performance Reporting</h3>
+                <h3>Performance Report</h3>
                 <p>Clear reporting on what&rsquo;s happening, what&rsquo;s working and what I&rsquo;m changing.</p>
               </div>
             </div>
@@ -383,36 +385,36 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {(featured.length > 0 || brands.length > 0) && (
+      {(displayVideos.length > 0 || brands.length > 0) && (
         <section>
           <div className="wrap">
             <div className="section-head">
               <span className="kicker">Proof from travel agency founders</span>
               <h2>
-                Agencies that <span className="marker">trusted LoopWings.</span>
+                Agencies that <span className="marker nowrap">trusted LoopWings.</span>
               </h2>
             </div>
             {brands.length > 0 && <BrandGrid brands={brands.slice(0, 8)} />}
-            {featured.length > 0 && (
-              featured.length > 1 ? (
+            {displayVideos.length > 0 && (
+              displayVideos.length > 1 ? (
                 <div style={{ marginTop: brands.length ? 22 : 0 }}>
-                  <Rail label="written testimonials">
-                    {featured.map((item) => (
-                      <QuoteCard key={item.id} item={item} />
+                  <Rail label="video testimonials">
+                    {displayVideos.map((item) => (
+                      <VideoTestimonial key={item.id} item={item} />
                     ))}
                   </Rail>
                 </div>
               ) : (
-                <div className="quotes" style={{ marginTop: brands.length ? 22 : 0 }}>
-                  {featured.map((item) => (
-                    <QuoteCard key={item.id} item={item} />
+                <div className="videos" style={{ marginTop: brands.length ? 22 : 0 }}>
+                  {displayVideos.map((item) => (
+                    <VideoTestimonial key={item.id} item={item} />
                   ))}
                 </div>
               )
             )}
             <div style={{ marginTop: 28 }}>
               <Link className="btn ghost" href="/testimonials">
-                Read all testimonials →
+                View all testimonials →
               </Link>
             </div>
           </div>

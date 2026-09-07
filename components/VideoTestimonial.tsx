@@ -58,8 +58,10 @@ export default function VideoTestimonial({ item }: { item: Testimonial }) {
     );
   }
 
+  const isPortrait = item.orientation === "portrait";
+
   return (
-    <div className="video">
+    <div className={`video ${isPortrait ? "video-portrait" : ""}`}>
       {frame}
       <div className="vmeta">
         <strong>{item.author}</strong>
