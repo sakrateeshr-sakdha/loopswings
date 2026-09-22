@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import LeadForm from "@/components/LeadForm";
-import VideoTestimonial from "@/components/VideoTestimonial";
-import BrandGrid from "@/components/BrandGrid";
-import Rail from "@/components/Rail";
+import FeaturedTestimonialCard from "@/components/FeaturedTestimonialCard";
+import ProofBrandsMarquee from "@/components/ProofBrandsMarquee";
+
 import {
   getPublishedBrands,
   getPublishedSocial,
@@ -26,502 +27,587 @@ export default async function LandingPage() {
   const displayVideos = featured.length > 0 ? featured : videoTestimonials;
   // sameAs expects profile URLs, so mailto: and tel: links are left out.
   const socialUrls = social.map((s) => s.url).filter((u) => u.startsWith("http"));
+  const whatsappUrl =
+    social.find((s) => s.platform === "whatsapp")?.url || "https://wa.me/8574859685";
 
   return (
     <>
       <OrganizationSchema sameAs={socialUrls} />
       <FaqSchema />
-      <SiteNav />
+      <SiteNav whatsappUrl={whatsappUrl} />
 
       <header className="hero">
         <div className="wrap hero-grid">
-          <div>
+          <div className="hero-content">
             <span className="kicker">Meta Ads for travel agencies</span>
-            <h1>
-              Get <span className="marker">2X More High-Quality Travel Leads</span> in 90 Days
+            <h1 className="hero-title">
+              Getting <span className="hero-travel-pill">Travel</span> Leads,
+              <br className="hero-br-desktop" />
+              But Most Are Junk?
             </h1>
-            <p className="lead">
-              Meta Ads lead generation built specifically for travel agencies. I plan, create, run
-              and optimize your Meta Ads to bring you{" "}
-              <strong>more relevant travel enquiries</strong> — not just more messages.
+            <p className="hero-lead">
+              I help travel agencies get more quality leads with Meta Ads. I find what&apos;s
+              bringing the wrong travellers, fix it at the source, and optimize your ads to bring
+              more relevant enquiries to your WhatsApp.
             </p>
-            <div className="hero-actions">
-              <a className="btn gold" href="#apply">
-                GET MORE QUALITY LEADS →
+            <div className="hero-actions-column">
+              <a className="btn hero-cta-btn" href="#apply">
+                Get Quality Travel Leads →
               </a>
-              <span className="small">
-                No long-term contract · Ad spend paid directly to Meta
+              <span className="hero-sub-note">
+                See the lead quality from your first campaign.
               </span>
             </div>
           </div>
-          <div className="doodle-card hero-doodle-card">
+          <div className="hero-visual-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/founder.png"
-              alt="Many enquiries filtered down to high-quality enquiries and more bookings"
+              src="/images/hero-founder-new.png"
+              alt="Vishuvabharathi - Travel Marketing"
+              width={430}
+              height={590}
+              className="hero-founder-img"
             />
           </div>
         </div>
       </header>
 
-      <section>
-        <div className="wrap split">
-          <div>
-            <div className="section-head">
-              <span className="kicker">The real problem</span>
-              <h2>
-                Getting Leads Isn&rsquo;t the Problem. Getting the{" "}
-                <span className="marker">Right Leads</span> Is.
+      <section id="who" className="problem-section">
+        <div id="problems" />
+        <div className="wrap">
+          <div style={{ marginBottom: 20 }}>
+            <span className="kicker">The Real Problem</span>
+          </div>
+
+          <h2 className="problem-heading">
+            Getting Leads Isn&rsquo;t the Problem.
+            <br />
+            Getting <span className="quality-marker">Quality Leads</span> Is.
+          </h2>
+
+          <p className="problem-subhead">
+            You can get 50 enquiries. But if most of them are&hellip;
+          </p>
+
+          <div className="speech-bubble-grid">
+            {[
+              "Ask for the price — nothing after that",
+              "Want only the cheapest package",
+              "Don’t have actual travel dates yet",
+              "Enquire casually with no real intent to book",
+              "Stop replying once the conversation starts",
+            ].map((problem) => (
+              <div className="speech-bubble-card" key={problem}>
+                <span className="bubble-badge" aria-hidden="true">✕</span>
+                <p className="bubble-text">{problem}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="problem-footer-note">
+            More leads don&rsquo;t mean better results. What matters is getting more of the right
+            travellers — people who actually fit your package and have a real chance of booking.
+          </p>
+        </div>
+      </section>
+
+      <section className="reason-section">
+        <div className="wrap">
+          <div className="reason-grid">
+            <div className="reason-left">
+              <div style={{ marginBottom: 18 }}>
+                <span className="kicker">The Real Reason</span>
+              </div>
+
+              <h2 className="reason-heading">
+                Junk Leads Don&rsquo;t Start on WhatsApp. They Start{" "}
+                <span className="reason-marker">Before the Click.</span>
               </h2>
+
+              <div className="reason-copy">
+                <p>
+                  Junk leads aren&rsquo;t always a targeting problem. The wrong travellers can be
+                  attracted by the offer, message, targeting, or how easily someone can become a
+                  lead.
+                </p>
+                <p>
+                  That&rsquo;s why simply changing the audience or budget doesn&rsquo;t always fix
+                  lead quality.
+                </p>
+                <p>
+                  The real fix is finding where lead quality is breaking down &mdash; and fixing it
+                  at the source.
+                </p>
+              </div>
+
+              <div className="reason-divider" aria-hidden="true" />
+
+              <div className="reason-statement">
+                <p className="reason-statement-white">Don&rsquo;t just optimize for more leads.</p>
+                <p className="reason-statement-gold">Optimize for more of the right leads.</p>
+              </div>
             </div>
-            <p>You can generate 50 enquiries. But if most of them are:</p>
-            <div className="problem-list">
+
+            <div className="reason-right">
+              <div className="reason-card">
+                <Image
+                  src="/images/reason-diagram.jpg"
+                  alt="High-quality enquiries and more bookings lead qualification diagram"
+                  width={520}
+                  height={520}
+                  className="reason-card-img"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="system" className="tlqs-section">
+        <div className="wrap">
+          <div style={{ marginBottom: 18 }}>
+            <span className="kicker">How it works</span>
+          </div>
+
+          <h2 className="tlqs-heading">Travel Lead Quality System</h2>
+
+          <p className="tlqs-subhead">
+            I work across four areas that determine which travellers your campaign attracts, who
+            enquires, and how many of those enquiries are actually worth pursuing.
+          </p>
+
+          <div className="tlqs-grid">
+            <article className="tlqs-card tlqs-card-yellow">
+              <div className="tlqs-card-top">
+                <div className="tlqs-num-wrap">
+                  <span className="tlqs-num">01</span>
+                  <div className="tlqs-bar tlqs-bar-yellow" aria-hidden="true" />
+                </div>
+                <div className="tlqs-icon-blob tlqs-blob-yellow" aria-hidden="true">
+                  <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
+                    <path d="M21 16V12C21 10.34 22.34 9 24 9H28C29.66 9 31 10.34 31 12V16" stroke="#111" strokeWidth="2.5" strokeLinecap="round" />
+                    <rect x="13" y="16" width="26" height="24" rx="4" fill="#facc15" stroke="#111" strokeWidth="2.5" />
+                    <line x1="26" y1="16" x2="26" y2="40" stroke="#111" strokeWidth="2" strokeDasharray="2 2" />
+                    <path d="M15 21L10 26L13 29L18 24" fill="#ffffff" stroke="#111" strokeWidth="2" strokeLinejoin="round" />
+                    <circle cx="16" cy="22" r="1" fill="#111" />
+                    <path d="M16 20L19 16" stroke="#111" strokeWidth="1.5" />
+                    <path d="M43 14L45 12M46 17L49 17" stroke="#111" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="tlqs-title">OFFER</h3>
+              <p className="tlqs-headline">Give the right traveller a reason to enquire.</p>
+              <p className="tlqs-body">
+                Position the package, value, price and key details clearly so the offer attracts
+                travellers who are a genuine fit.
+              </p>
+            </article>
+
+            <article className="tlqs-card tlqs-card-blue">
+              <div className="tlqs-card-top">
+                <div className="tlqs-num-wrap">
+                  <span className="tlqs-num">02</span>
+                  <div className="tlqs-bar tlqs-bar-blue" aria-hidden="true" />
+                </div>
+                <div className="tlqs-icon-blob tlqs-blob-blue" aria-hidden="true">
+                  <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
+                    <path d="M13 14H37C39.2 14 41 15.8 41 18V30C41 32.2 39.2 34 37 34H20L13 40V34C11.3 34 10 32.7 10 31V18C10 15.8 11.8 14 13 14Z" fill="#ffffff" stroke="#111" strokeWidth="2.5" strokeLinejoin="round" />
+                    <circle cx="20" cy="24" r="2" fill="#3b82f6" />
+                    <circle cx="26" cy="24" r="2" fill="#3b82f6" />
+                    <circle cx="32" cy="24" r="2" fill="#3b82f6" />
+                    <path d="M44 14L47 11M45 20L48 20" stroke="#111" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="tlqs-title">MESSAGE</h3>
+              <p className="tlqs-headline">Make the right traveller respond.</p>
+              <p className="tlqs-body">
+                Build the creative and message around the traveller, their reason for travelling and
+                what matters to them — while clearly communicating the details they need to decide.
+              </p>
+            </article>
+
+            <article className="tlqs-card tlqs-card-green">
+              <div className="tlqs-card-top">
+                <div className="tlqs-num-wrap">
+                  <span className="tlqs-num">03</span>
+                  <div className="tlqs-bar tlqs-bar-green" aria-hidden="true" />
+                </div>
+                <div className="tlqs-icon-blob tlqs-blob-green" aria-hidden="true">
+                  <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
+                    <circle cx="16" cy="20" r="4.5" stroke="#111" strokeWidth="2.5" fill="#ffffff" />
+                    <path d="M10 34C10 29.5 13 27 16 27C17.8 27 19.3 27.8 20.2 29" stroke="#111" strokeWidth="2.5" strokeLinecap="round" />
+                    <circle cx="36" cy="20" r="4.5" stroke="#111" strokeWidth="2.5" fill="#ffffff" />
+                    <path d="M42 34C42 29.5 39 27 36 27C34.2 27 32.7 27.8 31.8 29" stroke="#111" strokeWidth="2.5" strokeLinecap="round" />
+                    <circle cx="26" cy="17" r="5.5" stroke="#111" strokeWidth="2.5" fill="#ffffff" />
+                    <path d="M18 35C18 29.5 21.5 26.5 26 26.5C30.5 26.5 34 29.5 34 35" stroke="#111" strokeWidth="2.5" strokeLinecap="round" fill="#10b981" fillOpacity="0.15" />
+                    <path d="M41 12L44 9M43 17L46 17" stroke="#111" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="tlqs-title">TARGETING</h3>
+              <p className="tlqs-headline">Help Meta find the right prospects.</p>
+              <p className="tlqs-body">
+                Set the right audience boundaries, campaign optimization and creative signals so Meta
+                has the right conditions to find more relevant travellers.
+              </p>
+            </article>
+
+            <article className="tlqs-card tlqs-card-coral">
+              <div className="tlqs-card-top">
+                <div className="tlqs-num-wrap">
+                  <span className="tlqs-num">04</span>
+                  <div className="tlqs-bar tlqs-bar-coral" aria-hidden="true" />
+                </div>
+                <div className="tlqs-icon-blob tlqs-blob-coral" aria-hidden="true">
+                  <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
+                    <path d="M11 15H41L29 29V38C29 39 28 40 27 40H25C24 40 23 39 23 38V29L11 15Z" fill="#f43f5e" fillOpacity="0.15" stroke="#111" strokeWidth="2.5" strokeLinejoin="round" />
+                    <ellipse cx="26" cy="15" rx="15" ry="3" fill="#ffffff" stroke="#111" strokeWidth="2.5" />
+                    <path d="M26 44C26 44 24 46 24 47C24 48.1 24.9 49 26 49C27.1 49 28 48.1 28 47C28 46 26 44 26 44Z" fill="#f43f5e" />
+                    <path d="M43 14L46 12M45 19L48 19" stroke="#111" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="tlqs-title">QUALIFICATION</h3>
+              <p className="tlqs-headline">Separate genuine opportunities from poor-fit enquiries.</p>
+              <p className="tlqs-body">
+                Define what a quality lead means for your package and use the creative, enquiry flow
+                and sales feedback to identify which leads are actually worth pursuing.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="handle-section">
+        <div className="wrap">
+          <div className="handle-split">
+            <div className="handle-left">
+              <div style={{ marginBottom: 18 }}>
+                <span className="kicker">What I handle for you</span>
+              </div>
+              <h2 className="handle-heading">
+                Your Meta Ads,
+                <br />
+                Handled End-to-End.
+              </h2>
+              <p className="handle-lead">
+                From analysing the package to improving lead quality — I handle the complete Meta
+                Ads process with one focus: bringing you more enquiries worth pursuing.
+              </p>
+              <div className="handle-swoop" aria-hidden="true">
+                <svg width="120" height="24" viewBox="0 0 120 24" fill="none">
+                  <path
+                    d="M3 16C38 6 76 6 117 18"
+                    stroke="#f4c431"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="handle-timeline">
               {[
-                "Just checking the price",
-                "Looking for the cheapest package",
-                "Not ready to travel",
-                "Not interested in your actual offer",
-                "Ghosting after the first WhatsApp message",
-              ].map((problem) => (
-                <div className="problem" key={problem}>
-                  <span className="x">×</span>
-                  <div>
-                    <strong>{problem}</strong>
+                {
+                  num: "01",
+                  title: "Offer & Campaign Strategy",
+                  desc: "I analyse your package, market, price and offer to decide how the campaign should be positioned and promoted.",
+                },
+                {
+                  num: "02",
+                  title: "Persona & Creative Strategy",
+                  desc: "I identify who we’re trying to attract, what matters to them, and develop different offer/theme personas, angles and creative directions.",
+                },
+                {
+                  num: "03",
+                  title: "Ad Creatives & Copy",
+                  desc: "I create the static, carousel and video ads — with messaging designed to attract the right travellers and filter out poor-fit leads.",
+                },
+                {
+                  num: "04",
+                  title: "Campaign Setup & Management",
+                  desc: "I build, launch, monitor and optimize your Meta Ads — from targeting and budget to creative testing, and delivery and performance.",
+                },
+                {
+                  num: "05",
+                  title: "Lead Quality Optimization",
+                  starred: true,
+                  desc: "I track which leads are qualified, why others aren’t, find the biggest lead-quality problem, and improve the campaign around it.",
+                },
+                {
+                  num: "06",
+                  title: "Performance & Learning Reports",
+                  desc: "Clear reporting on cost per qualified lead, qualified leads %, spend per qualified lead, what worked, what didn’t, and what gets improved next.",
+                },
+              ].map((step) => (
+                <div className="timeline-item" key={step.num}>
+                  <div className="timeline-track">
+                    <div className="timeline-node" aria-hidden="true" />
+                    <span className="timeline-pill">{step.num}</span>
+                  </div>
+                  <div className="timeline-content">
+                    <h3 className="timeline-title">
+                      {step.title}
+                      {step.starred && (
+                        <span className="timeline-star" aria-label="featured">
+                          ★
+                        </span>
+                      )}
+                    </h3>
+                    <p className="timeline-desc">{step.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <p className="statement">Those 50 leads don&rsquo;t mean much.</p>
-            <p>
-              You don&rsquo;t need another campaign optimized for the cheapest possible lead. You
-              need Meta Ads built to attract{" "}
-              <strong>travellers who are genuinely interested in what you&rsquo;re selling.</strong>
-            </p>
           </div>
-          <div className="doodle-card">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/doodle-1.png" alt="Many enquiries filtered down to high-quality enquiries and more bookings" />
-          </div>
-        </div>
-      </section>
 
-      <section id="system">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="kicker">That&rsquo;s what I help you do</span>
-            <h2>The 90-Day Travel Lead System</h2>
-            <p>
-              My goal is simple:{" "}
-              <strong>
-                increase the number of high-quality leads your travel agency receives from Meta Ads.
-              </strong>{" "}
-              I handle the advertising side from strategy → creative → campaign → optimization.
-            </p>
-          </div>
-          <div className="system-box">
-            <p className="statement">You focus on the conversations that matter.</p>
-            <div className="flow">
-              <div className="flow-item">Talk to travellers</div>
-              <span className="arrow">→</span>
-              <div className="flow-item">Close bookings</div>
-              <span className="arrow">→</span>
-              <div className="flow-item">Run trips</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap">
-          <div className="section-head">
-            <span className="kicker">How it works</span>
-            <h2>One system. Five deliberate steps.</h2>
-          </div>
-          <div className="steps">
-            <article className="step">
-              <div className="step-num">01</div>
-              <div>
-                <h3>I Choose What to Advertise</h3>
-                <p>
-                  Not every package should be advertised the same way. I look at your{" "}
-                  <strong>
-                    Destination · Package · Price · Departure · Audience · Previous results
-                  </strong>{" "}
-                  and identify the offer I believe has the strongest potential.
-                </p>
-              </div>
-              <div className="step-visual">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/doodle-7.png" alt="" />
-              </div>
-            </article>
-
-            <article className="step">
-              <div className="step-num">02</div>
-              <div>
-                <h3>I Build Ads That Pre-Qualify Travellers</h3>
-                <p>
-                  I use your package, pricing, positioning and messaging to help attract the{" "}
-                  <strong>right type of traveller before they even message you.</strong> I create ad
-                  angles, hooks, copy, static creatives, reels/video concepts and multiple
-                  variations for testing.
-                </p>
-              </div>
-              <div className="step-visual">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/doodle-3.png" alt="" />
-              </div>
-            </article>
-
-            <article className="step">
-              <div className="step-num">03</div>
-              <div>
-                <h3>I Build &amp; Launch Your Meta Campaign</h3>
-                <p>
-                  I handle campaign structure, audience strategy, conversion setup, WhatsApp / lead
-                  setup, ad setup and tracking where applicable. Then I launch.
-                </p>
-              </div>
-              <div className="step-visual">
-                <svg className="doodle" viewBox="0 0 240 150">
-                  <g fill="none" stroke="#111" strokeWidth="3" strokeLinecap="round">
-                    <path d="M26 107h188" />
-                    <path d="M54 107V73M101 107V42M148 107V61M195 107V28" />
-                    <path d="M40 48c53 6 90-8 151-26" stroke="#f4c431" strokeWidth="7" />
-                  </g>
-                </svg>
-              </div>
-            </article>
-
-            <article className="step">
-              <div className="step-num">04</div>
-              <div>
-                <h3>Meta Finds the People Most Likely to Enquire</h3>
-                <p>
-                  I don&rsquo;t rely on endlessly stacking random interests. I give Meta the right{" "}
-                  <strong>Offer + Creative + Campaign Objective + Conversion Signal</strong> and
-                  allow its system to learn who is most likely to respond.
-                </p>
-              </div>
-              <div className="step-visual">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/doodle-5.png" alt="" />
-              </div>
-            </article>
-
-            <article className="step">
-              <div className="step-num">05</div>
-              <div>
-                <h3>I Optimize for Lead Quality</h3>
-                <p>
-                  <strong>Cheap leads aren&rsquo;t automatically good leads.</strong> I use campaign
-                  data and your feedback on enquiry quality to improve{" "}
-                  <strong>Creative → Messaging → Offer → Targeting → Campaign</strong> over time.
-                </p>
-              </div>
-              <div className="step-visual">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/doodle-6.png" alt="" />
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap">
-          <div className="section-head">
-            <span className="kicker">What I handle for you</span>
-            <h2>Your Meta Ads engine, handled end-to-end.</h2>
-          </div>
-          <div className="handle-grid">
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <circle cx="45" cy="45" r="28" />
-                  <path d="M45 10v70M10 45h70" />
-                  <circle cx="45" cy="45" r="8" fill="#f4c431" />
-                </g>
+          <div className="handle-banner">
+            <div className="handle-banner-icon" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 32 32" fill="none" style={{ transform: "rotate(-8deg)" }}>
+                <path
+                  d="M5 13H8L17 7V25L8 19H5C3.89543 19 3 18.1046 3 17V15C3 13.8954 3.89543 13 5 13Z"
+                  fill="#ffffff"
+                  stroke="#111111"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M21 12C22.5 13.2 23.5 14.5 23.5 16C23.5 17.5 22.5 18.8 21 20"
+                  stroke="#111111"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M25 9C27.5 11.2 28.5 13.5 28.5 16C28.5 18.5 27.5 20.8 25 23"
+                  stroke="#111111"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+                <path d="M8 19L10 26" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
-              <div>
-                <h3>Ad Strategy</h3>
-                <p>Campaign planning built around your travel offer and business objective.</p>
-              </div>
             </div>
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <rect x="16" y="19" width="58" height="50" rx="8" />
-                  <path d="M24 60l18-18 12 12 11-9 9 10" />
-                  <circle cx="58" cy="33" r="6" fill="#f4c431" />
-                </g>
-              </svg>
-              <div>
-                <h3>Ad Creatives</h3>
-                <p>Creative concepts, hooks, copy and ad variations designed specifically to attract the right travellers on Meta.</p>
-              </div>
-            </div>
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <rect x="18" y="20" width="54" height="52" rx="7" />
-                  <path d="M30 34h30M30 46h30M30 58h19" />
-                  <path d="M60 55l5 6 11-14" stroke="#f4c431" strokeWidth="6" />
-                </g>
-              </svg>
-              <div>
-                <h3>Campaign Setup</h3>
-                <p>Campaigns, ad sets, and ads structured correctly from the start for optimal performance.</p>
-              </div>
-            </div>
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <path d="M18 65l18-22 15 12 20-30" />
-                  <circle cx="18" cy="65" r="4" />
-                  <circle cx="36" cy="43" r="4" />
-                  <circle cx="51" cy="55" r="4" />
-                  <circle cx="71" cy="25" r="4" fill="#f4c431" />
-                </g>
-              </svg>
-              <div>
-                <h3>Ad Management</h3>
-                <p>
-                  I monitor performance and make optimization decisions throughout the campaign.
-                </p>
-              </div>
-            </div>
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <path d="M18 31h54M18 59h54" />
-                  <circle cx="34" cy="31" r="8" fill="#f4c431" />
-                  <circle cx="58" cy="59" r="8" />
-                </g>
-              </svg>
-              <div>
-                <h3>Creative Testing</h3>
-                <p>
-                  Different messages, angles and creatives tested instead of depending on one ad.
-                </p>
-              </div>
-            </div>
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <path d="M15 22h60L60 42v22H30V42z" />
-                  <path d="M36 55l6 7 13-16" stroke="#f4c431" strokeWidth="6" />
-                </g>
-              </svg>
-              <div>
-                <h3>Lead Optimization</h3>
-                <p>
-                  Campaign performance + actual enquiry feedback used to improve incoming lead
-                  quality.
-                </p>
-              </div>
-            </div>
-            <div className="handle-card">
-              <svg viewBox="0 0 90 90">
-                <g fill="none" stroke="#111" strokeWidth="3">
-                  <rect x="15" y="16" width="60" height="58" rx="8" />
-                  <path d="M27 58V45M43 58V34M59 58V27" stroke="#f4c431" strokeWidth="6" />
-                </g>
-              </svg>
-              <div>
-                <h3>Performance Report</h3>
-                <p>Clear reporting on what&rsquo;s happening, what&rsquo;s working and what I&rsquo;m changing.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap split">
-          <div>
-            <span className="kicker">Why not just boost your posts?</span>
-            <h2>Because reach, likes and cheap clicks aren&rsquo;t the objective.</h2>
-            <p className="statement">Your objective is enquiries.</p>
-            <p>I build your campaigns around the action you actually want travellers to take.</p>
-            <div className="flow flow-stack">
-              <div className="flow-item">See Ad</div>
-              <span className="arrow">→</span>
-              <div className="flow-item">Get Interested</div>
-              <span className="arrow">→</span>
-              <div className="flow-item">Enquire</div>
-              <span className="arrow">→</span>
-              <div className="flow-item">WhatsApp</div>
-              <span className="arrow">→</span>
-              <div className="flow-item">Your Team Converts</div>
-            </div>
-          </div>
-          <div className="doodle-card">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/doodle-2.png" alt="Enquiries growing month over month" />
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap">
-          <div className="goal">
-            <span className="kicker">The goal</span>
-            <div className="goal-big">
-              2X More High-Quality Leads
-              <br />
-              in 90 Days.
-            </div>
-            <p className="lead">
-              Not 2X more random WhatsApp messages. Not 2X more clicks. Not vanity metrics.{" "}
-              <strong>More of the enquiries your sales team actually wants to receive.</strong>
-            </p>
-            <p className="small">
-              Your exact results depend on factors such as current lead volume, offer, destination,
-              pricing, ad budget, season and sales process. I first understand where you are today
-              and determine whether the 2X target is realistic for your agency.
+            <div className="handle-banner-divider" aria-hidden="true" />
+            <p className="handle-banner-text">
+              <strong>I improve the system that brings you enquiries.</strong> Your team handles the
+              conversation, follow-up and booking.
             </p>
           </div>
         </div>
       </section>
 
-      {(displayVideos.length > 0 || brands.length > 0) && (
-        <section>
-          <div className="wrap">
-            <div className="section-head">
-              <span className="kicker">Proof from travel agency founders</span>
-              <h2>
-                Agencies that <span className="marker nowrap">trusted LoopWings.</span>
+
+
+      <section className="grow-agency-section">
+        <div className="wrap">
+          <div className="grow-agency-card">
+            <div className="grow-content">
+              <div style={{ marginBottom: 16 }}>
+                <span className="kicker">Let&rsquo;s grow your travel agency</span>
+              </div>
+
+              <h2 className="grow-heading">
+                Get More Quality
+                <br />
+                Leads From Meta Ads.
               </h2>
-            </div>
-            {brands.length > 0 && <BrandGrid brands={brands.slice(0, 8)} />}
-            {displayVideos.length > 0 && (
-              displayVideos.length > 1 ? (
-                <div style={{ marginTop: brands.length ? 22 : 0 }}>
-                  <Rail label="video testimonials">
-                    {displayVideos.map((item) => (
-                      <VideoTestimonial key={item.id} item={item} />
-                    ))}
-                  </Rail>
-                </div>
-              ) : (
-                <div className="videos" style={{ marginTop: brands.length ? 22 : 0 }}>
-                  {displayVideos.map((item) => (
-                    <VideoTestimonial key={item.id} item={item} />
-                  ))}
-                </div>
-              )
-            )}
-            <div style={{ marginTop: 28 }}>
-              <Link className="btn ghost" href="/testimonials">
-                View all testimonials →
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
 
-      <section id="fit">
-        <div className="wrap">
-          <div className="two-col">
-            <div className="list-card">
-              <span className="badge">What you don&rsquo;t need to do</span>
-              <h2 style={{ marginTop: 18 }}>I handle the advertising.</h2>
-              <p className="statement">You handle the enquiries.</p>
-              <ul>
-                {[
-                  "Learn Meta Ads",
-                  "Figure out campaign structure",
-                  "Decide which audiences to target",
-                  "Write your own ad copy",
-                  "Keep making random creatives",
-                  "Check Ads Manager every day",
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="x">×</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <p className="grow-copy">
+                Tell me about your travel agency and your current Meta Ads. I&rsquo;ll look at what&rsquo;s
+                happening and see where your lead quality can improve.
+              </p>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grow-whatsapp-btn"
+                aria-label="Talk to Me on WhatsApp"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2a9.9 9.9 0 00-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1112 20zm4.5-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.7-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A3 3 0 006 9.6c0 1.8 1.3 3.5 1.5 3.7a10 10 0 003.8 3.4c1.4.6 2 .6 2.7.5a2.5 2.5 0 001.6-1.2 2 2 0 00.1-1.1z" />
+                </svg>
+                <span>Talk to Me on WhatsApp &rarr;</span>
+              </a>
+
+              <div className="grow-trust-row">
+                <span className="grow-trust-item">
+                  <span aria-hidden="true">🔒</span> No obligation
+                </span>
+                <span className="grow-trust-sep" aria-hidden="true">|</span>
+                <span className="grow-trust-item">Quick response</span>
+                <span className="grow-trust-sep" aria-hidden="true">|</span>
+                <span className="grow-trust-item">Let&rsquo;s grow together</span>
+              </div>
             </div>
-            <div>
-              <div className="list-card" style={{ marginBottom: 22 }}>
-                <span className="badge">Who this is for</span>
-                <h3 style={{ marginTop: 16 }}>Indian travel agencies that:</h3>
-                <ul>
-                  {[
-                    "Sell tour packages or planned departures",
-                    "Want more enquiries through Meta Ads",
-                    "Can respond to leads quickly on WhatsApp",
-                    "Have an advertising budget",
-                    "Want to improve lead quality — not simply chase the lowest CPL",
-                    "Will share feedback about which leads are good and bad",
-                  ].map((item) => (
-                    <li key={item}>
-                      <span className="check">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="list-card">
-                <span className="badge">Who this is not for</span>
-                <ul>
-                  {[
-                    "You want guaranteed bookings without handling the sales process",
-                    "You expect Meta Ads to fix an uncompetitive package",
-                    "You only care about getting the cheapest possible leads",
-                    "You don’t have anyone available to follow up with enquiries",
-                  ].map((item) => (
-                    <li key={item}>
-                      <span className="x">×</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+            <div className="grow-illustration-wrap">
+              <Image
+                src="/images/agency-growth.jpg"
+                alt="Suitcase and travel destination signpost for better leads, more bookings, and growth"
+                width={512}
+                height={398}
+                className="grow-illustration-img"
+                priority
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div className="wrap commit">
-          <div>
-            <span className="kicker">No long-term lock-in</span>
-            <h2>You Don&rsquo;t Have to Commit Long-Term.</h2>
-            <p className="lead">
-              Start with me for <strong>90 days</strong>. That&rsquo;s enough time for me to launch,
-              collect data, test different approaches and optimize the campaign based on what
-              I&rsquo;m learning.
-            </p>
-            <p>At the end of the 90 days, I&rsquo;ll review the results with you.</p>
-            <p className="statement">
-              If it makes business sense to continue, I scale.
+      <section className="proof-section">
+        <div className="wrap">
+          <div className="proof-header">
+            <div style={{ marginBottom: 18 }}>
+              <span className="kicker">Proof</span>
+            </div>
+            <h2 className="proof-heading">
+              What Travel Agencies Say
               <br />
-              If it doesn&rsquo;t, you&rsquo;re not locked in.
-            </p>
+              About Working With Me.
+            </h2>
           </div>
-          <div className="process-card">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/process.jpg" alt="The process I follow: Plan, Do, Check, Act" />
+
+          <div className="proof-agencies-wrap">
+            <p className="proof-sublabel">TRAVEL AGENCIES I&rsquo;VE WORKED WITH</p>
+            <ProofBrandsMarquee brands={brands} />
+          </div>
+
+          <FeaturedTestimonialCard items={displayVideos} />
+
+          <div className="proof-action">
+            <Link className="proof-btn" href="/testimonials">
+              View All Results &amp; Testimonials &rarr;
+            </Link>
           </div>
         </div>
       </section>
 
-      <section id="apply">
-        <div className="wrap">
-          <div className="cta">
-            <span className="kicker">Ready to get better travel leads?</span>
-            <h2>Let&rsquo;s See If I Can 2X Your High-Quality Leads in the Next 90 Days.</h2>
-            <p>
-              Tell me about your travel agency, what you&rsquo;re currently advertising and the kind
-              of enquiries you&rsquo;re looking for. I&rsquo;ll assess whether my Meta Ads system is
-              a good fit for your agency.
-            </p>
-            <LeadForm />
-            <div className="small" style={{ marginTop: 14 }}>
-              For Indian travel agencies · Limited client capacity
+
+
+      <section id="apply" className="apply-showcase-section">
+        {/* Top-Right Airplane Doodle */}
+        <div className="apply-airplane-doodle" aria-hidden="true">
+          <div className="apply-airplane-text">
+            <span>Travel</span>
+            <span>More People</span>
+            <span>Explore More</span>
+          </div>
+          <svg viewBox="0 0 120 70" width="100" height="58" fill="none" className="apply-flight-svg">
+            <path
+              d="M10 55 C 30 65, 55 50, 50 30 C 45 10, 20 20, 35 45 C 50 65, 80 40, 105 18"
+              stroke="#1e293b"
+              strokeWidth="1.5"
+              strokeDasharray="4 4"
+            />
+            <path
+              d="M102 12 L115 15 L108 24 L103 21 L106 18 L100 17 L97 19 L95 17 L99 14 L102 12 Z"
+              fill="#1e293b"
+            />
+          </svg>
+        </div>
+
+        {/* Bottom-Right Dark Brush Banner */}
+        <div className="apply-brush-banner" aria-hidden="true">
+          <span>Let&rsquo;s Grow Your Travel Business</span>
+        </div>
+
+        <div className="wrap apply-wrap">
+          <div className="apply-grid">
+            {/* Left Column */}
+            <div className="apply-left">
+              <div className="apply-badge">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                  <path d="M4 19h16v2H4v-2zm2-7h3v5H6v-5zm5-4h3v9h-3V8zm5-4h3v13h-3V4z" />
+                </svg>
+                <span>FOR TRAVEL AGENCIES</span>
+              </div>
+
+              <h2 className="apply-heading">
+                Let&rsquo;s See If I Can{" "}
+                <span className="apply-pill-marker">2X Your High-Quality</span>{" "}
+                Leads in the Next 90 Days.
+              </h2>
+
+              <p className="apply-desc">
+                Tell me about your travel agency, what you&rsquo;re currently advertising and the kind
+                of enquiries you&rsquo;re looking for. I&rsquo;ll assess whether my Meta Ads system is
+                a good fit for your agency.
+              </p>
+
+              <div className="apply-features">
+                <div className="apply-feature-card">
+                  <div className="apply-feature-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </div>
+                  <span className="apply-feature-label">More<br />Qualified Leads</span>
+                </div>
+
+                <div className="apply-feature-card">
+                  <div className="apply-feature-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                      <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                  </div>
+                  <span className="apply-feature-label">Better ROI<br />on Ad Spend</span>
+                </div>
+
+                <div className="apply-feature-card">
+                  <div className="apply-feature-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <circle cx="12" cy="12" r="6" />
+                      <circle cx="12" cy="12" r="2" />
+                    </svg>
+                  </div>
+                  <span className="apply-feature-label">Strategy<br />Built for Travel</span>
+                </div>
+              </div>
+
+              {/* Angled handwritten cursive badge */}
+              <div className="apply-possibilities-badge">
+                <span className="apply-possibilities-text">
+                  Exploring<br />
+                  New Possibilities<br />
+                  Together
+                </span>
+                <div className="apply-possibilities-swoop" aria-hidden="true" />
+              </div>
+            </div>
+
+            {/* Right Column: Floating Form Card */}
+            <div className="apply-right">
+              <div className="apply-card">
+                <div className="apply-card-header">
+                  <div className="apply-card-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                      <line x1="9" y1="12" x2="15" y2="12" />
+                      <line x1="9" y1="16" x2="13" y2="16" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="apply-card-title">Share Your Details</h3>
+                    <p className="apply-card-subtitle">It takes less than a minute</p>
+                  </div>
+                </div>
+
+                <LeadForm />
+              </div>
             </div>
           </div>
         </div>
@@ -536,24 +622,14 @@ export default async function LandingPage() {
           {FAQS.map((faq) => (
             <details key={faq.q}>
               <summary>{faq.q}</summary>
-              <p>{faq.a}</p>
+              {faq.a.split("\n\n").map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </details>
           ))}
         </div>
       </section>
 
-      <section>
-        <div className="wrap">
-          <div className="cta" style={{ background: "white" }}>
-            <span className="kicker">One final thought</span>
-            <h2>Stop Paying Meta for Leads Your Team Doesn&rsquo;t Want.</h2>
-            <p>Build a campaign designed to bring your travel agency more relevant enquiries.</p>
-            <a className="btn gold" href="#apply">
-              GET MORE QUALITY LEADS →
-            </a>
-          </div>
-        </div>
-      </section>
 
       <SiteFooter />
     </>

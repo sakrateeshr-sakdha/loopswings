@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-import LeadForm from "@/components/LeadForm";
 import QuoteCard from "@/components/QuoteCard";
 import BrandGrid from "@/components/BrandGrid";
 import VideoTestimonial from "@/components/VideoTestimonial";
@@ -47,6 +47,8 @@ export default async function TestimonialsPage() {
     getPublishedSocial(),
   ]);
   const socialUrls = social.map((s) => s.url).filter((u) => u.startsWith("http"));
+  const whatsappUrl =
+    social.find((s) => s.platform === "whatsapp")?.url || "https://wa.me/8574859685";
 
   return (
     <>
@@ -57,7 +59,7 @@ export default async function TestimonialsPage() {
           { name: "Testimonials", path: "/testimonials" },
         ]}
       />
-      <SiteNav variant="page" />
+      <SiteNav variant="page" whatsappUrl={whatsappUrl} />
 
       <header className="page-hero">
         <div className="wrap">
@@ -152,19 +154,64 @@ export default async function TestimonialsPage() {
         </div>
       </section>
 
-      <section id="apply">
+      <section id="apply" className="grow-agency-section">
         <div className="wrap">
-          <div className="cta">
-            <span className="kicker">Ready to get better travel leads?</span>
-            <h2>Let&rsquo;s See If I Can 2X Your High-Quality Leads in the Next 90 Days.</h2>
-            <p>
-              Tell me about your travel agency, what you&rsquo;re currently advertising and the kind
-              of enquiries you&rsquo;re looking for. I&rsquo;ll assess whether my Meta Ads system is
-              a good fit for your agency.
-            </p>
-            <LeadForm />
-            <div className="small" style={{ marginTop: 14 }}>
-              For Indian travel agencies · Limited client capacity
+          <div className="grow-agency-card">
+            <div className="grow-content">
+              <div style={{ marginBottom: 16 }}>
+                <span className="kicker">Let&rsquo;s grow your travel agency</span>
+              </div>
+
+              <h2 className="grow-heading">
+                Get More Quality
+                <br />
+                Leads From Meta Ads.
+              </h2>
+
+              <p className="grow-copy">
+                Tell me about your travel agency and your current Meta Ads. I&rsquo;ll look at what&rsquo;s
+                happening and see where your lead quality can improve.
+              </p>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grow-whatsapp-btn"
+                aria-label="Talk to Me on WhatsApp"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2a9.9 9.9 0 00-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1112 20zm4.5-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.7-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A3 3 0 006 9.6c0 1.8 1.3 3.5 1.5 3.7a10 10 0 003.8 3.4c1.4.6 2 .6 2.7.5a2.5 2.5 0 001.6-1.2 2 2 0 00.1-1.1z" />
+                </svg>
+                <span>Talk to Me on WhatsApp &rarr;</span>
+              </a>
+
+              <div className="grow-trust-row">
+                <span className="grow-trust-item">
+                  <span aria-hidden="true">🔒</span> No obligation
+                </span>
+                <span className="grow-trust-sep" aria-hidden="true">|</span>
+                <span className="grow-trust-item">Quick response</span>
+                <span className="grow-trust-sep" aria-hidden="true">|</span>
+                <span className="grow-trust-item">Let&rsquo;s grow together</span>
+              </div>
+            </div>
+
+            <div className="grow-illustration-wrap">
+              <Image
+                src="/images/agency-growth.jpg"
+                alt="Suitcase and travel destination signpost for better leads, more bookings, and growth"
+                width={512}
+                height={398}
+                className="grow-illustration-img"
+                priority
+              />
             </div>
           </div>
         </div>

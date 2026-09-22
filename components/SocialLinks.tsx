@@ -12,7 +12,7 @@ export const PLATFORM_LABELS: Record<SocialPlatform, string> = {
 };
 
 /** Single-path icons, drawn to sit on the same 24px grid as each other. */
-function Icon({ platform }: { platform: SocialPlatform }) {
+export function SocialIcon({ platform }: { platform: SocialPlatform }) {
   const common = {
     width: 22,
     height: 22,
@@ -97,7 +97,7 @@ export default function SocialLinks({ links }: { links: SocialLink[] }) {
                   title={name}
                   {...(isInternalScheme ? {} : { target: "_blank", rel: "noreferrer me" })}
                 >
-                  <Icon platform={link.platform} />
+                  <SocialIcon platform={link.platform} />
                 </a>
               </li>
             );

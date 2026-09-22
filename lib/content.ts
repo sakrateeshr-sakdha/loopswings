@@ -1,32 +1,32 @@
 /** Shared so the visible FAQ and its FAQPage schema can never drift apart. */
 export const FAQS: { q: string; a: string }[] = [
   {
-    q: "Do you guarantee 2X leads?",
-    a: "2X is the target I work toward, not a blanket guarantee for every agency. Results depend on your existing performance, offer, pricing, destination, season, ad budget and other factors. Before starting, I'll look at your current situation and determine whether the target is realistic.",
+    q: "What do you mean by a “quality lead”?",
+    a: "A quality lead is an enquiry that matches the important requirements of your trip — such as destination, budget, travel dates, departure location and genuine travel intent. We define these criteria together before the campaign starts.",
   },
   {
-    q: "Do I pay the Meta ad budget separately?",
-    a: "Yes. Your advertising budget is separate from my service fee and is paid directly to Meta.",
+    q: "Do you guarantee quality leads or bookings?",
+    a: "No. No Meta Ads campaign can guarantee that every enquiry will be qualified or that every qualified lead will book.\n\nMy focus is to reduce irrelevant and poor-fit enquiries and continuously improve the proportion of qualified leads your campaigns generate.",
   },
   {
-    q: "Do you create the ads?",
-    a: "Yes. I develop the advertising angles, copy and creatives required for the campaigns I manage.",
+    q: "Do you create the ad creatives too?",
+    a: "Yes. I create the static, carousel and video creatives needed for your Meta Ads, along with the copy, angles and messaging.",
   },
   {
-    q: "Where will I receive the leads?",
-    a: "Depending on the campaign strategy, leads can be directed to channels such as WhatsApp or Meta's lead forms.",
+    q: "What if I'm not running Meta Ads right now?",
+    a: "That's fine. I can start from scratch — from your offer and campaign strategy through creatives, setup, launch and ongoing optimization.",
+  },
+  {
+    q: "Is the Meta ad budget separate?",
+    a: "Yes. Your ad spend is separate from my service fee and is paid directly to Meta. The advertising budget is agreed before the campaign starts.",
   },
   {
     q: "Do you handle the leads after they enquire?",
-    a: "Your team handles the sales conversations and bookings. I focus on bringing in and improving the quality of enquiries through Meta Ads.",
+    a: "No. I handle the Meta Ads and lead-generation process. Once the enquiry reaches your sales process, your team handles the conversation, follow-up and booking.",
   },
   {
     q: "How long do I need to work with you?",
-    a: "The initial engagement is 90 days. There is no requirement to sign a long-term contract beyond the agreed engagement.",
-  },
-  {
-    q: "What happens after 90 days?",
-    a: "I'll review the campaign performance, lead quality and opportunities for further improvement with you. If the numbers make sense for both sides, I can continue and scale the campaigns.",
+    a: "There's no fixed long-term commitment. We work month to month, and you can continue as long as the service is delivering value for your agency.\n\nI recommend giving campaigns enough time and budget to collect useful data, identify the main causes of poor-quality enquiries and improve them.",
   },
 ];
 
