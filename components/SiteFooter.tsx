@@ -59,9 +59,9 @@ export default async function SiteFooter() {
                 <li>
                   <a href="/#faq">FAQ</a>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/testimonials">Testimonials</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
 

@@ -48,18 +48,18 @@ export default function SiteNav({
         </button>
 
         <div className={open ? "nav-links open" : "nav-links"} id="site-menu">
-          <a href={`${prefix}#system`} onClick={close}>
-            How it works
-          </a>
           <a href={`${prefix}#who`} onClick={close}>
             Who it&apos;s for
+          </a>
+          <a href={`${prefix}#system`} onClick={close}>
+            How it works
           </a>
           <a href={`${prefix}#faq`} onClick={close}>
             FAQ
           </a>
-          <Link href="/testimonials" onClick={close}>
+          {/* <Link href="/testimonials" onClick={close}>
             Testimonials
-          </Link>
+          </Link> */}
           <a
             className="nav-whatsapp-btn"
             href={whatsappUrl}

@@ -138,8 +138,8 @@ h3{font-size:24px}
 /* Adjacent sections each contribute their padding, so this value is roughly
    half the visible gap between two sections. */
 section{padding:64px 0}
-.hero{padding:64px 0 48px}
-.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+.hero{padding:24px 0 48px}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:start}
 .hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:26px}
 .section-head{max-width:880px;margin-bottom:36px}
 .section-head p{font-size:18px;color:#444}
@@ -149,13 +149,14 @@ section{padding:64px 0}
 /* ---------- new hero section styles ---------- */
 .hero-content .kicker {
   text-transform: none;
-  font-family: inherit;
-  font-size: 14.5px;
-  font-weight: 600;
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  font-size: 15.5px;
+  font-weight: 700;
   letter-spacing: -0.01em;
   color: #18181b;
   display: inline-block;
   position: relative;
+  z-index: 0;
   margin-bottom: 14px;
 }
 .hero-content .kicker:after {
@@ -171,12 +172,12 @@ section{padding:64px 0}
   z-index: -1;
 }
 .hero-title {
-  font-size: clamp(32px, 4.4vw, 56px);
+  font-size: clamp(38px, 5vw, 66px);
   font-weight: 800;
-  line-height: 1.14;
+  line-height: 1.12;
   letter-spacing: -0.035em;
   color: #09090b;
-  max-width: 600px;
+  max-width: 660px;
   margin: 0;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -240,8 +241,9 @@ section{padding:64px 0}
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 440px;
+  max-width: 390px;
   margin-inline: auto;
+  margin-top: 18px;
   position: relative;
 }
 .hero-founder-img {
@@ -699,13 +701,13 @@ svg.doodle{width:100%;height:auto;display:block}
   line-height:1.4;
   color:#18181b;
   margin:0 0 16px;
+  min-height:63px;
 }
 .tlqs-body{
   font-size:13.5px;
   line-height:1.55;
   color:#52525b;
   margin:0;
-  margin-top:auto;
 }
 
 /* ---------- what i handle for you (process timeline) ---------- */
@@ -728,19 +730,6 @@ svg.doodle{width:100%;height:auto;display:block}
   align-self: start;
 }
 
-.handle-left .kicker {
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #d97706;
-}
-
-.handle-left .kicker:after {
-  display: none;
-}
-
 .handle-heading {
   font-size: clamp(34px, 3.8vw, 52px);
   font-weight: 900;
@@ -758,14 +747,6 @@ svg.doodle{width:100%;height:auto;display:block}
   margin: 0 0 24px;
 }
 
-.handle-swoop {
-  display: inline-block;
-  margin-top: 4px;
-}
-
-.handle-swoop svg {
-  display: block;
-}
 
 /* Timeline */
 .handle-timeline {
@@ -2070,7 +2051,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
 }
 
 .dark-footer-nav-list a:hover {
-  color: #ffffff;
+  color: #fde047;
 }
 
 .dark-footer-social-list {
@@ -2163,7 +2144,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
 }
 
 .dark-footer-legal a:hover {
-  color: #d4d4d8;
+  color: #fde047;
 }
 
 /* ---------- move to top button ---------- */
@@ -2416,7 +2397,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .doodle-card img{max-width:320px;margin:0 auto}
   .hero-doodle-card{max-width:380px;margin-inline:auto;padding:20px 20px 0 20px}
   .hero-doodle-card img{max-width:100%}
-  .hero-visual-card{max-width:380px;margin-inline:auto;margin-top:10px}
+  .hero-visual-card{max-width:380px;margin-inline:auto;margin-top:10px;transform:translateX(7.4%)}
   .hero-br-desktop{display:none}
   .hero-actions-column{align-items:center;text-align:center}
   .hero-content{text-align:center}
@@ -2452,7 +2433,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
     display: none;
   }
   .dark-footer-chalk-card {
-    max-width: 100%;
+    max-width: 280px;
     margin-top: 10px;
   }
 }
@@ -2501,8 +2482,8 @@ details p{color:#4d4d4d;margin:12px 0 0}
   }
   .grow-trust-item{gap:3px;white-space:nowrap;flex-shrink:0}
   .grow-trust-sep{flex-shrink:0}
-  .grow-illustration-wrap{width:100%;justify-content:center}
-  .grow-illustration-img{max-width:100%;width:min(100%,320px);height:auto;margin:0 auto}
+  .grow-illustration-wrap{width:100%;justify-content:center;margin-top:4px}
+  .grow-illustration-img{max-width:220px;width:100%;height:auto;margin:0 auto}
   .form{grid-template-columns:1fr}.form textarea,.form .wide{grid-column:1}
   .cta{padding:30px 18px}
 
@@ -2631,7 +2612,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .doodle-card img{max-width:210px;margin:0 auto}
   .hero-doodle-card{max-width:340px;padding:16px 16px 0 16px;margin-inline:auto}
   .hero-doodle-card img{max-width:100%}
-  .hero-visual-card{max-width:320px;margin-inline:auto}
+  .hero-visual-card{max-width:320px;margin-inline:auto;transform:translateX(7.4%)}
   .hero-title{font-size:clamp(24px, 7.5vw, 34px); word-break: break-word; overflow-wrap: break-word;}
   .hero-lead{font-size:15.5px;line-height:1.58}
   .hero-cta-btn{width:100%;max-width:320px;padding:13px 20px}
@@ -2679,8 +2660,8 @@ details p{color:#4d4d4d;margin:12px 0 0}
   }
   .dark-footer-chalk-card {
     padding: 0;
-    max-width: 100%;
-    width: min(100%, 340px);
+    max-width: 220px;
+    width: 100%;
     margin: 8px 0 0;
     border-radius: 14px;
     overflow: hidden;

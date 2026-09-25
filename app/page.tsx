@@ -41,18 +41,35 @@ export default async function LandingPage() {
           <div className="hero-content">
             <span className="kicker">Meta Ads for travel agencies</span>
             <h1 className="hero-title">
-              Getting <span className="hero-travel-pill">Travel</span> Leads,
-              <br className="hero-br-desktop" />
-              But Most Are Junk?
+              Getting <span className="hero-travel-pill">Travel</span>
+              <br />
+              Leads, But Most
+              <br />
+              Are Junk?
             </h1>
             <p className="hero-lead">
-              I help travel agencies get more quality leads with Meta Ads. I find what&apos;s
+              I help travel agencies get more quality leads with Meta Ads. By finding what&apos;s
               bringing the wrong travellers, fix it at the source, and optimize your ads to bring
               more relevant enquiries to your WhatsApp.
             </p>
             <div className="hero-actions-column">
-              <a className="btn hero-cta-btn" href="#apply">
-                Get Quality Travel Leads →
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grow-whatsapp-btn"
+                aria-label="Talk to Me on WhatsApp"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2a9.9 9.9 0 00-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1112 20zm4.5-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.7-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A3 3 0 006 9.6c0 1.8 1.3 3.5 1.5 3.7a10 10 0 003.8 3.4c1.4.6 2 .6 2.7.5a2.5 2.5 0 001.6-1.2 2 2 0 00.1-1.1z" />
+                </svg>
+                <span>Talk to Me on WhatsApp &rarr;</span>
               </a>
               <span className="hero-sub-note">
                 See the lead quality from your first campaign.
@@ -296,16 +313,7 @@ export default async function LandingPage() {
                 From analysing the package to improving lead quality — I handle the complete Meta
                 Ads process with one focus: bringing you more enquiries worth pursuing.
               </p>
-              <div className="handle-swoop" aria-hidden="true">
-                <svg width="120" height="24" viewBox="0 0 120 24" fill="none">
-                  <path
-                    d="M3 16C38 6 76 6 117 18"
-                    stroke="#f4c431"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
+
             </div>
 
             <div className="handle-timeline">
@@ -399,7 +407,39 @@ export default async function LandingPage() {
 
 
 
-      <section className="grow-agency-section">
+
+
+      <section className="proof-section">
+        <div className="wrap">
+          <div className="proof-header">
+            <div style={{ marginBottom: 18 }}>
+              <span className="kicker">Proof</span>
+            </div>
+            <h2 className="proof-heading">
+              What Travel Agencies Say
+              <br />
+              About Working With Me.
+            </h2>
+          </div>
+
+          <div className="proof-agencies-wrap">
+            <p className="proof-sublabel">TRAVEL AGENCIES I&rsquo;VE WORKED WITH</p>
+            <ProofBrandsMarquee brands={brands} />
+          </div>
+
+          <FeaturedTestimonialCard items={displayVideos} />
+
+          <div className="proof-action">
+            {/* <Link className="proof-btn" href="/testimonials">
+              View All Results &amp; Testimonials &rarr;
+            </Link> */}
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="apply" className="grow-agency-section">
         <div className="wrap">
           <div className="grow-agency-card">
             <div className="grow-content">
@@ -455,159 +495,7 @@ export default async function LandingPage() {
                 width={512}
                 height={398}
                 className="grow-illustration-img"
-                priority
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="proof-section">
-        <div className="wrap">
-          <div className="proof-header">
-            <div style={{ marginBottom: 18 }}>
-              <span className="kicker">Proof</span>
-            </div>
-            <h2 className="proof-heading">
-              What Travel Agencies Say
-              <br />
-              About Working With Me.
-            </h2>
-          </div>
-
-          <div className="proof-agencies-wrap">
-            <p className="proof-sublabel">TRAVEL AGENCIES I&rsquo;VE WORKED WITH</p>
-            <ProofBrandsMarquee brands={brands} />
-          </div>
-
-          <FeaturedTestimonialCard items={displayVideos} />
-
-          <div className="proof-action">
-            <Link className="proof-btn" href="/testimonials">
-              View All Results &amp; Testimonials &rarr;
-            </Link>
-          </div>
-        </div>
-      </section>
-
-
-
-      <section id="apply" className="apply-showcase-section">
-        {/* Top-Right Airplane Doodle */}
-        <div className="apply-airplane-doodle" aria-hidden="true">
-          <div className="apply-airplane-text">
-            <span>Travel</span>
-            <span>More People</span>
-            <span>Explore More</span>
-          </div>
-          <svg viewBox="0 0 120 70" width="100" height="58" fill="none" className="apply-flight-svg">
-            <path
-              d="M10 55 C 30 65, 55 50, 50 30 C 45 10, 20 20, 35 45 C 50 65, 80 40, 105 18"
-              stroke="#1e293b"
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
-            />
-            <path
-              d="M102 12 L115 15 L108 24 L103 21 L106 18 L100 17 L97 19 L95 17 L99 14 L102 12 Z"
-              fill="#1e293b"
-            />
-          </svg>
-        </div>
-
-        {/* Bottom-Right Dark Brush Banner */}
-        <div className="apply-brush-banner" aria-hidden="true">
-          <span>Let&rsquo;s Grow Your Travel Business</span>
-        </div>
-
-        <div className="wrap apply-wrap">
-          <div className="apply-grid">
-            {/* Left Column */}
-            <div className="apply-left">
-              <div className="apply-badge">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-                  <path d="M4 19h16v2H4v-2zm2-7h3v5H6v-5zm5-4h3v9h-3V8zm5-4h3v13h-3V4z" />
-                </svg>
-                <span>FOR TRAVEL AGENCIES</span>
-              </div>
-
-              <h2 className="apply-heading">
-                Let&rsquo;s See If I Can{" "}
-                <span className="apply-pill-marker">2X Your High-Quality</span>{" "}
-                Leads in the Next 90 Days.
-              </h2>
-
-              <p className="apply-desc">
-                Tell me about your travel agency, what you&rsquo;re currently advertising and the kind
-                of enquiries you&rsquo;re looking for. I&rsquo;ll assess whether my Meta Ads system is
-                a good fit for your agency.
-              </p>
-
-              <div className="apply-features">
-                <div className="apply-feature-card">
-                  <div className="apply-feature-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </div>
-                  <span className="apply-feature-label">More<br />Qualified Leads</span>
-                </div>
-
-                <div className="apply-feature-card">
-                  <div className="apply-feature-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                      <polyline points="17 6 23 6 23 12" />
-                    </svg>
-                  </div>
-                  <span className="apply-feature-label">Better ROI<br />on Ad Spend</span>
-                </div>
-
-                <div className="apply-feature-card">
-                  <div className="apply-feature-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <circle cx="12" cy="12" r="6" />
-                      <circle cx="12" cy="12" r="2" />
-                    </svg>
-                  </div>
-                  <span className="apply-feature-label">Strategy<br />Built for Travel</span>
-                </div>
-              </div>
-
-              {/* Angled handwritten cursive badge */}
-              <div className="apply-possibilities-badge">
-                <span className="apply-possibilities-text">
-                  Exploring<br />
-                  New Possibilities<br />
-                  Together
-                </span>
-                <div className="apply-possibilities-swoop" aria-hidden="true" />
-              </div>
-            </div>
-
-            {/* Right Column: Floating Form Card */}
-            <div className="apply-right">
-              <div className="apply-card">
-                <div className="apply-card-header">
-                  <div className="apply-card-icon-wrap" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-                      <line x1="9" y1="12" x2="15" y2="12" />
-                      <line x1="9" y1="16" x2="13" y2="16" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="apply-card-title">Share Your Details</h3>
-                    <p className="apply-card-subtitle">It takes less than a minute</p>
-                  </div>
-                </div>
-
-                <LeadForm />
-              </div>
             </div>
           </div>
         </div>

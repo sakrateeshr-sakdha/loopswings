@@ -162,7 +162,7 @@ export default function FeaturedTestimonialCard({
       <div className="proof-content">
         <div className="proof-content-header">
           <div className="proof-card-kicker">
-            <span>VIDEO TESTIMONIAL</span>
+            <span>RECENT TESTIMONIAL</span>
             <div className="proof-kicker-flourish" aria-hidden="true">
               <svg width="56" height="8" viewBox="0 0 56 8" fill="none">
                 <path
