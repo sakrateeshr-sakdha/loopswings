@@ -126,6 +126,16 @@ export default function LeadsList({ initial }: { initial: Lead[] }) {
                 {formatDate(lead.createdAt)}
                 {lead.adsStatus ? ` · ${lead.adsStatus}` : ""}
               </p>
+              {lead.advertisingPackage && (
+                <p className="adm-meta" style={{ marginTop: 6 }}>
+                  <strong>Advertising:</strong> {lead.advertisingPackage}
+                </p>
+              )}
+              {lead.leadProblems && lead.leadProblems.length > 0 && (
+                <p className="adm-meta" style={{ marginTop: 4 }}>
+                  <strong>Problems:</strong> {lead.leadProblems.join(", ")}
+                </p>
+              )}
               {lead.message && (
                 <p style={{ marginTop: 10, whiteSpace: "pre-wrap" }}>{lead.message}</p>
               )}

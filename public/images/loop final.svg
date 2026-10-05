@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="888" height="410" viewBox="0 0 888 410">
+  <title>Gold infinity symbol</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffcc05"/>
+      <stop offset="0.5" stop-color="#ffd006"/>
+      <stop offset="1" stop-color="#ffbd03"/>
+    </linearGradient>
+    <path id="loop" d="M 444,205 C 354,109 302,43 213,43 C 118,43 45,113 45,205 C 45,297 118,367 213,367 C 309,367 364,293 444,205 C 524,117 579,43 675,43 C 770,43 843,113 843,205 C 843,297 770,367 675,367 C 586,367 534,301 444,205 Z"/>
+    <path id="front" d="M 213,367 C 309,367 364,293 444,205 C 524,117 579,43 675,43"/>
+    <clipPath id="crossing"><rect x="389" y="146" width="110" height="118"/></clipPath>
+  </defs>
+  <path d="M 397,205 C 336,143 288,75 211,75 C 134,75 78,129 78,205 C 78,281 134,335 211,335 C 288,335 336,267 397,205 Z" fill="none"/>
+  <path d="M 491,205 C 552,143 600,75 677,75 C 754,75 810,129 810,205 C 810,281 754,335 677,335 C 600,335 552,267 491,205 Z" fill="none"/>
+  <use xlink:href="#loop" fill="none" stroke="#15130b" stroke-width="76" stroke-linejoin="round"/>
+  <use xlink:href="#loop" fill="none" stroke="url(#gold)" stroke-width="64" stroke-linejoin="round"/>
+  <g clip-path="url(#crossing)">
+    <use xlink:href="#front" fill="none" stroke="#15130b" stroke-width="76"/>
+    <use xlink:href="#front" fill="none" stroke="url(#gold)" stroke-width="64"/>
+  </g>
+  <g fill="none" stroke="#15130b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 203,52 L 229,76 L 204,101"/>
+    <path d="M 676,52 L 650,76 L 675,101"/>
+    <path d="M 207,310 L 180,335 L 206,360"/>
+    <path d="M 677,310 L 706,335 L 679,360"/>
+  </g>
+</svg>

@@ -48,11 +48,11 @@ export default function SiteNav({
         </button>
 
         <div className={open ? "nav-links open" : "nav-links"} id="site-menu">
-          <a href={`${prefix}#who`} onClick={close}>
-            Who it&apos;s for
+          <a href={`${prefix}#operate`} onClick={close}>
+            My Approach
           </a>
-          <a href={`${prefix}#system`} onClick={close}>
-            How it works
+          <a href={`${prefix}#proof`} onClick={close}>
+            Proof
           </a>
           <a href={`${prefix}#faq`} onClick={close}>
             FAQ
@@ -76,7 +76,7 @@ export default function SiteNav({
             >
               <path d="M12 2a9.9 9.9 0 00-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1112 20zm4.5-5.9c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.7 1-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.7-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A3 3 0 006 9.6c0 1.8 1.3 3.5 1.5 3.7a10 10 0 003.8 3.4c1.4.6 2 .6 2.7.5a2.5 2.5 0 001.6-1.2 2 2 0 00.1-1.1z" />
             </svg>
-            <span>Talk to Me on WhatsApp &rarr;</span>
+            <span>Get My FREE Audit &rarr;</span>
           </a>
         </div>
       </div>

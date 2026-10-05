@@ -52,9 +52,11 @@ function buildBody(lead: Lead) {
   const rows: [string, string][] = [
     ["Name", lead.name],
     ["Agency", lead.agency],
-    ["Email", lead.email || "—"],
     ["WhatsApp", lead.phone || "—"],
-    ["City", lead.city || "—"],
+    ...(lead.advertisingPackage ? [["Package / Trip", lead.advertisingPackage] as [string, string]] : []),
+    ...(lead.leadProblems && lead.leadProblems.length ? [["Lead Problems", lead.leadProblems.join(", ")] as [string, string]] : []),
+    ...(lead.email ? [["Email", lead.email] as [string, string]] : []),
+    ...(lead.city ? [["City", lead.city] as [string, string]] : []),
     ["Meta Ads status", lead.adsStatus || "—"],
     ["Received", new Date(lead.createdAt).toLocaleString("en-IN")],
   ];

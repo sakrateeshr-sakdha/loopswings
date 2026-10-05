@@ -28,6 +28,26 @@ export async function POST(req: Request) {
     return Response.json({ error: "That email address doesn't look right" }, { status: 400 });
   }
 
+  const advertisingPackage = str(body.advertisingPackage, 300);
+  const leadProblems = Array.isArray(body.leadProblems)
+    ? body.leadProblems.map((p: unknown) => str(p, 150)).filter(Boolean)
+    : [];
+
+  const rawMessage = str(body.message, 1500);
+
+  // Format a comprehensive message for notification emails and admin viewing
+  const messageParts: string[] = [];
+  if (advertisingPackage) {
+    messageParts.push(`Currently Advertising Package / Trip:\n${advertisingPackage}`);
+  }
+  if (leadProblems.length > 0) {
+    messageParts.push(`Biggest Problems with Leads:\n• ${leadProblems.join("\n• ")}`);
+  }
+  if (rawMessage) {
+    messageParts.push(`Additional Notes:\n${rawMessage}`);
+  }
+  const formattedMessage = messageParts.join("\n\n");
+
   const lead: Lead = {
     id: newId("led"),
     name: str(body.name, 120),
@@ -36,7 +56,9 @@ export async function POST(req: Request) {
     email,
     phone: str(body.phone, 40),
     adsStatus: str(body.adsStatus, 80),
-    message: str(body.message, 2000),
+    advertisingPackage,
+    leadProblems,
+    message: formattedMessage || rawMessage || "Lead Quality Audit Request",
     createdAt: new Date().toISOString(),
     read: false,
   };
@@ -46,10 +68,9 @@ export async function POST(req: Request) {
   const missing = (
     [
       ["name", "your name"],
-      ["agency", "agency name"],
-      ["email", "email address"],
+      ["agency", "travel agency name"],
       ["phone", "WhatsApp number"],
-      ["city", "city"],
+      ["advertisingPackage", "what package/trip you are advertising"],
     ] as const
   ).filter(([key]) => !lead[key]);
 

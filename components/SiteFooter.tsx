@@ -51,10 +51,10 @@ export default async function SiteFooter() {
               <h4 className="dark-footer-col-title">Explore</h4>
               <ul className="dark-footer-nav-list">
                 <li>
-                  <a href="/#system">How it works</a>
+                  <a href="/#operate">My Approach</a>
                 </li>
                 <li>
-                  <a href="/#problems">Who it&rsquo;s for</a>
+                  <a href="/#proof">Proof</a>
                 </li>
                 <li>
                   <a href="/#faq">FAQ</a>

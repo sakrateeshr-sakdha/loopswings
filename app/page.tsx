@@ -79,10 +79,10 @@ export default async function LandingPage() {
           <div className="hero-visual-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/hero-founder-new.png"
+              src="/images/Black%20svg.svg"
               alt="Vishuvabharathi - Travel Marketing"
-              width={430}
-              height={590}
+              width={582}
+              height={638}
               className="hero-founder-img"
             />
           </div>
@@ -184,13 +184,13 @@ export default async function LandingPage() {
       <section id="system" className="tlqs-section">
         <div className="wrap">
           <div style={{ marginBottom: 18 }}>
-            <span className="kicker">How it works</span>
+            <span className="kicker">What I work On</span>
           </div>
 
           <h2 className="tlqs-heading">Travel Lead Quality System</h2>
 
           <p className="tlqs-subhead">
-            I work across four areas that determine which travellers your campaign attracts, who
+            I work across four areas that influence which travellers your campaign attracts, who
             enquires, and how many of those enquiries are actually worth pursuing.
           </p>
 
@@ -289,10 +289,96 @@ export default async function LandingPage() {
               <h3 className="tlqs-title">QUALIFICATION</h3>
               <p className="tlqs-headline">Separate genuine opportunities from poor-fit enquiries.</p>
               <p className="tlqs-body">
-                Define what a quality lead means for your package and use the creative, enquiry flow
-                and sales feedback to identify which leads are actually worth pursuing.
+                Define what a quality lead means for your package and use the right qualification criteria and enquiry flow to identify which leads are actually worth pursuing.
               </p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* HOW I OPERATE IT - Continuous Learning & Improvement Loop */}
+      {/* ========================================================================= */}
+      <section id="operate" className="operate-section">
+        <div className="wrap">
+          <div className="operate-header">
+            <div style={{ marginBottom: 18 }}>
+              <span className="kicker">How I Operate It</span>
+            </div>
+            <h2 className="operate-heading">
+              Lead Quality Isn&rsquo;t a One-Time Setup.
+            </h2>
+            <p className="operate-subhead">
+              Qualified lead generation is a continuous learning and improvement loop between me, Meta and your sales team.
+            </p>
+          </div>
+
+          <div className="operate-diagram">
+            {/* Infinity loop graphic displayed on tablet and above */}
+            <div className="operate-loop-wrap" aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/loop final.svg"
+                alt=""
+                className="operate-loop-img"
+                width={888}
+                height={410}
+              />
+            </div>
+
+            <div className="operate-grid">
+              {/* Card 01 - BUILD */}
+              <article className="operate-card operate-card-01">
+                <div className="operate-card-step">
+                  <span className="operate-step-num">01</span>
+                  <span className="operate-step-sep">—</span>
+                  <span className="operate-step-name">BUILD</span>
+                </div>
+                <h3 className="operate-card-title">I build the right campaign inputs.</h3>
+                <p className="operate-card-body">
+                  I work on the offer, message, targeting and qualification to give Meta the right conditions to find more relevant travellers.
+                </p>
+              </article>
+
+              {/* Card 03 - QUALIFY */}
+              <article className="operate-card operate-card-03">
+                <div className="operate-card-step">
+                  <span className="operate-step-num">03</span>
+                  <span className="operate-step-sep">—</span>
+                  <span className="operate-step-name">QUALIFY</span>
+                </div>
+                <h3 className="operate-card-title">Your sales team qualifies the leads.</h3>
+                <p className="operate-card-body">
+                  Your team speaks with the enquiries and classifies them as Qualified, Unqualified, No Response or Pending — including the reason when a lead isn&rsquo;t qualified.
+                </p>
+              </article>
+
+              {/* Card 04 - IMPROVE */}
+              <article className="operate-card operate-card-04">
+                <div className="operate-card-step">
+                  <span className="operate-step-num">04</span>
+                  <span className="operate-step-sep">—</span>
+                  <span className="operate-step-name">IMPROVE</span>
+                </div>
+                <h3 className="operate-card-title">I use the results to improve the next loop.</h3>
+                <p className="operate-card-body">
+                  I analyse the actual lead outcomes, identify the biggest lead-quality problem, make the most relevant change and run the next loop.
+                </p>
+              </article>
+
+              {/* Card 02 - RUN */}
+              <article className="operate-card operate-card-02">
+                <div className="operate-card-step">
+                  <span className="operate-step-num">02</span>
+                  <span className="operate-step-sep">—</span>
+                  <span className="operate-step-name">RUN</span>
+                </div>
+                <h3 className="operate-card-title">Meta learns and delivers.</h3>
+                <p className="operate-card-body">
+                  Meta uses the campaign inputs, along with time, budget and performance signals, to learn and generate leads.
+                </p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -409,7 +495,7 @@ export default async function LandingPage() {
 
 
 
-      <section className="proof-section">
+      <section id="proof" className="proof-section">
         <div className="wrap">
           <div className="proof-header">
             <div style={{ marginBottom: 18 }}>
@@ -439,7 +525,8 @@ export default async function LandingPage() {
 
 
 
-      <section id="apply" className="grow-agency-section">
+      {/*
+      <section id="grow" className="grow-agency-section">
         <div className="wrap">
           <div className="grow-agency-card">
             <div className="grow-content">
@@ -496,6 +583,128 @@ export default async function LandingPage() {
                 height={398}
                 className="grow-illustration-img"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+      */}
+
+      {/* ========================================================================= */}
+      {/* APPLY / CONTACT SECTION - Santorini Travel Showcase with Lead Form */}
+      {/* ========================================================================= */}
+      <section id="apply" className="apply-showcase-section">
+        {/* Top-Right Airplane Doodle */}
+        <div className="apply-airplane-doodle" aria-hidden="true">
+          <div className="apply-airplane-text">
+            <span>Travel</span>
+            <span>More People</span>
+            <span>Explore More</span>
+          </div>
+          <svg viewBox="0 0 120 70" width="100" height="58" fill="none" className="apply-flight-svg">
+            <path
+              d="M10 55 C 30 65, 55 50, 50 30 C 45 10, 20 20, 35 45 C 50 65, 80 40, 105 18"
+              stroke="#1e293b"
+              strokeWidth="1.5"
+              strokeDasharray="4 4"
+            />
+            <path
+              d="M102 12 L115 15 L108 24 L103 21 L106 18 L100 17 L97 19 L95 17 L99 14 L102 12 Z"
+              fill="#1e293b"
+            />
+          </svg>
+        </div>
+
+        {/* Bottom-Right Dark Brush Banner */}
+        <div className="apply-brush-banner" aria-hidden="true">
+          <span>Let&rsquo;s Grow Your Travel Business</span>
+        </div>
+
+        <div className="wrap apply-wrap">
+          <div className="apply-grid">
+            {/* Left Column */}
+            <div className="apply-left">
+              <div className="apply-badge">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                  <path d="M4 19h16v2H4v-2zm2-7h3v5H6v-5zm5-4h3v9h-3V8zm5-4h3v13h-3V4z" />
+                </svg>
+                <span>FREE TRAVEL LEAD QUALITY AUDIT</span>
+              </div>
+
+              <h2 className="apply-heading">
+                Find Out What&rsquo;s Bringing You{" "}
+                <span className="apply-pill-marker">Junk Leads.</span>
+              </h2>
+
+              <p className="apply-desc">
+                Share your current travel campaign and a few recent lead details. I&rsquo;ll review your offer, messaging, targeting and qualification to identify where your lead-quality problem may be coming from — and what to fix first.
+              </p>
+
+              <div className="apply-features">
+                <div className="apply-feature-card">
+                  <div className="apply-feature-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </div>
+                  <span className="apply-feature-label">More<br />Qualified Leads</span>
+                </div>
+
+                <div className="apply-feature-card">
+                  <div className="apply-feature-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                      <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                  </div>
+                  <span className="apply-feature-label">Better ROI<br />on Ad Spend</span>
+                </div>
+
+                <div className="apply-feature-card">
+                  <div className="apply-feature-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <circle cx="12" cy="12" r="6" />
+                      <circle cx="12" cy="12" r="2" />
+                    </svg>
+                  </div>
+                  <span className="apply-feature-label">Strategy<br />Built for Travel</span>
+                </div>
+              </div>
+
+              {/* Angled handwritten cursive badge */}
+              <div className="apply-possibilities-badge">
+                <span className="apply-possibilities-text">
+                  Exploring<br />
+                  New Possibilities<br />
+                  Together
+                </span>
+                <div className="apply-possibilities-swoop" aria-hidden="true" />
+              </div>
+            </div>
+
+            {/* Right Column: Floating Form Card */}
+            <div className="apply-right">
+              <div className="apply-card">
+                <div className="apply-card-header">
+                  <div className="apply-card-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1 2-2h2" />
+                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                      <line x1="9" y1="12" x2="15" y2="12" />
+                      <line x1="9" y1="16" x2="13" y2="16" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="apply-card-title">Free Lead Quality Audit</h3>
+                    <p className="apply-card-subtitle">Takes less than 60 seconds</p>
+                  </div>
+                </div>
+
+                <LeadForm whatsappUrl={whatsappUrl} />
+              </div>
             </div>
           </div>
         </div>

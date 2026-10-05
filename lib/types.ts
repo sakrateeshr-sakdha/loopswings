@@ -35,11 +35,12 @@ export type Lead = {
   id: string;
   name: string;
   agency: string;
-  city: string;
-  /** Optional, but without it a notification can't be replied to. */
-  email: string;
+  city?: string;
+  email?: string;
   phone: string;
-  adsStatus: string;
+  adsStatus?: string;
+  advertisingPackage?: string;
+  leadProblems?: string[];
   message: string;
   createdAt: string;
   read: boolean;
