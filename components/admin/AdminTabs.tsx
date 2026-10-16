@@ -24,11 +24,9 @@ export default function AdminTabs() {
   return (
     <div className="adm-bar">
       <div className="adm-bar-left">
-        <Link className="brand" href="/">
+        <Link className="brand" href="/" aria-label="Vishuvabharathi">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-logo" src="/images/logo.png" alt="" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-text" src="/images/logo-text.png" alt="LoopWings" />
+          <img className="brand-logo-img" src="/images/vishuvabharathi.png" alt="Vishuvabharathi" style={{ height: 26, width: "auto" }} />
         </Link>
         <nav className="adm-tabs">
           {TABS.map((tab) => (

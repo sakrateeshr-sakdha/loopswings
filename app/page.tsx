@@ -39,7 +39,7 @@ export default async function LandingPage() {
       <header className="hero">
         <div className="wrap hero-grid">
           <div className="hero-content">
-            <span className="kicker">Meta Ads for travel agencies</span>
+            <span className="kicker">Lead Generation</span>
             <h1 className="hero-title">
               Getting <span className="hero-travel-pill">Travel</span>
               <br />
@@ -48,9 +48,13 @@ export default async function LandingPage() {
               Are Junk?
             </h1>
             <p className="hero-lead">
-              I help travel agencies get more quality leads with Meta Ads. By finding what&apos;s
+              I help businesses get more quality leads with Meta Ads and Google Ads.
+              By identifying what&apos;s attracting the wrong prospects, fixing the underlying
+              issues, and continuously improving campaigns, I help generate more enquiries
+              worth pursuing.
+              {/* I help travel agencies get more quality leads with Meta Ads. By finding what&apos;s
               bringing the wrong travellers, fix it at the source, and optimize your ads to bring
-              more relevant enquiries to your WhatsApp.
+              more relevant enquiries to your WhatsApp. */}
             </p>
             <div className="hero-actions-column">
               <a
@@ -72,14 +76,14 @@ export default async function LandingPage() {
                 <span>Talk to Me on WhatsApp &rarr;</span>
               </a>
               <span className="hero-sub-note">
-                See the lead quality from your first campaign.
+                See where your lead quality is breaking down — and what to fix first.
               </span>
             </div>
           </div>
           <div className="hero-visual-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/Black%20svg.svg"
+              src="/images/ownerpic.png"
               alt="Vishuvabharathi - Travel Marketing"
               width={582}
               height={638}
@@ -108,10 +112,10 @@ export default async function LandingPage() {
 
           <div className="speech-bubble-grid">
             {[
-              "Ask for the price — nothing after that",
-              "Want only the cheapest package",
-              "Don’t have actual travel dates yet",
-              "Enquire casually with no real intent to book",
+              "Aren't the right fit for what you sell",
+              "Don't have the budget to buy",
+              "Ask for the price — then disappear",
+              "Enquire with little or no real buying intent",
               "Stop replying once the conversation starts",
             ].map((problem) => (
               <div className="speech-bubble-card" key={problem}>
@@ -123,7 +127,7 @@ export default async function LandingPage() {
 
           <p className="problem-footer-note">
             More leads don&rsquo;t mean better results. What matters is getting more of the right
-            travellers — people who actually fit your package and have a real chance of booking.
+            prospects — people who fit what you package and have a genuine chance of becoming customers.
           </p>
         </div>
       </section>
@@ -143,17 +147,13 @@ export default async function LandingPage() {
 
               <div className="reason-copy">
                 <p>
-                  Junk leads aren&rsquo;t always a targeting problem. The wrong travellers can be
-                  attracted by the offer, message, targeting, or how easily someone can become a
-                  lead.
+                  Junk leads aren&rsquo;t always a targeting problem. The wrong prospects can be attracted by your offer, message, targeting, or how easily someone can become a lead.
                 </p>
                 <p>
-                  That&rsquo;s why simply changing the audience or budget doesn&rsquo;t always fix
-                  lead quality.
+                  That&rsquo;s why simply changing the audience, keywords or budget doesn&rsquo;t always fix lead quality.
                 </p>
                 <p>
-                  The real fix is finding where lead quality is breaking down &mdash; and fixing it
-                  at the source.
+                  The real fix is finding where lead quality is breaking down &mdash; and fixing it at the source.
                 </p>
               </div>
 
@@ -168,7 +168,7 @@ export default async function LandingPage() {
             <div className="reason-right">
               <div className="reason-card">
                 <Image
-                  src="/images/reason-diagram.jpg"
+                  src="/images/Marketing Targeting Strategy Infographic (1).png"
                   alt="High-quality enquiries and more bookings lead qualification diagram"
                   width={520}
                   height={520}
@@ -187,11 +187,10 @@ export default async function LandingPage() {
             <span className="kicker">What I work On</span>
           </div>
 
-          <h2 className="tlqs-heading">Travel Lead Quality System</h2>
+          <h2 className="tlqs-heading">Lead Quality System</h2>
 
           <p className="tlqs-subhead">
-            I work across four areas that influence which travellers your campaign attracts, who
-            enquires, and how many of those enquiries are actually worth pursuing.
+            I work across four areas that influence which prospects your campaigns attract, who enquires, and how many of those enquiries are actually worth pursuing.
           </p>
 
           <div className="tlqs-grid">
@@ -214,10 +213,9 @@ export default async function LandingPage() {
                 </div>
               </div>
               <h3 className="tlqs-title">OFFER</h3>
-              <p className="tlqs-headline">Give the right traveller a reason to enquire.</p>
+              <p className="tlqs-headline">Give the right prospect a reason to enquire.</p>
               <p className="tlqs-body">
-                Position the package, value, price and key details clearly so the offer attracts
-                travellers who are a genuine fit.
+                Position what you sell, its value, price and key details clearly so the offer attracts people who&rsquo;re a genuine fit.
               </p>
             </article>
 
@@ -238,10 +236,10 @@ export default async function LandingPage() {
                 </div>
               </div>
               <h3 className="tlqs-title">MESSAGE</h3>
-              <p className="tlqs-headline">Make the right traveller respond.</p>
+              <p className="tlqs-headline">Make the right prospect respond.</p>
               <p className="tlqs-body">
-                Build the creative and message around the traveller, their reason for travelling and
-                what matters to them — while clearly communicating the details they need to decide.
+                Build the creative and message around the customer&rsquo;s problem, desire and what matters to them &mdash;
+                while clearly communicating the details they need to decide.
               </p>
             </article>
 
@@ -264,10 +262,11 @@ export default async function LandingPage() {
                 </div>
               </div>
               <h3 className="tlqs-title">TARGETING</h3>
-              <p className="tlqs-headline">Help Meta find the right prospects.</p>
+              <p className="tlqs-headline">Reach the right prospects.</p>
               <p className="tlqs-body">
-                Set the right audience boundaries, campaign optimization and creative signals so Meta
-                has the right conditions to find more relevant travellers.
+                Use the right targeting signals for each platform &mdash; such as audiences,
+                locations, keywords and search intent &mdash; so your campaigns have better
+                conditions to reach relevant prospects.
               </p>
             </article>
 
@@ -289,7 +288,7 @@ export default async function LandingPage() {
               <h3 className="tlqs-title">QUALIFICATION</h3>
               <p className="tlqs-headline">Separate genuine opportunities from poor-fit enquiries.</p>
               <p className="tlqs-body">
-                Define what a quality lead means for your package and use the right qualification criteria and enquiry flow to identify which leads are actually worth pursuing.
+                Define what a quality lead means for your business and use the right qualification criteria and enquiry flow to identify which leads are actually worth pursuing.
               </p>
             </article>
           </div>
@@ -335,9 +334,9 @@ export default async function LandingPage() {
                   <span className="operate-step-name">BUILD</span>
                 </div>
                 <h3 className="operate-card-title">I build the right campaign inputs.</h3>
-                <p className="operate-card-body">
+                {/* <p className="operate-card-body">
                   I work on the offer, message, targeting and qualification to give Meta the right conditions to find more relevant travellers.
-                </p>
+                </p> */}
               </article>
 
               {/* Card 03 - QUALIFY */}
@@ -348,9 +347,9 @@ export default async function LandingPage() {
                   <span className="operate-step-name">QUALIFY</span>
                 </div>
                 <h3 className="operate-card-title">Your sales team qualifies the leads.</h3>
-                <p className="operate-card-body">
+                {/* <p className="operate-card-body">
                   Your team speaks with the enquiries and classifies them as Qualified, Unqualified, No Response or Pending — including the reason when a lead isn&rsquo;t qualified.
-                </p>
+                </p> */}
               </article>
 
               {/* Card 04 - IMPROVE */}
@@ -361,9 +360,9 @@ export default async function LandingPage() {
                   <span className="operate-step-name">IMPROVE</span>
                 </div>
                 <h3 className="operate-card-title">I use the results to improve the next loop.</h3>
-                <p className="operate-card-body">
+                {/* <p className="operate-card-body">
                   I analyse the actual lead outcomes, identify the biggest lead-quality problem, make the most relevant change and run the next loop.
-                </p>
+                </p> */}
               </article>
 
               {/* Card 02 - RUN */}
@@ -374,9 +373,9 @@ export default async function LandingPage() {
                   <span className="operate-step-name">RUN</span>
                 </div>
                 <h3 className="operate-card-title">Meta learns and delivers.</h3>
-                <p className="operate-card-body">
+                {/* <p className="operate-card-body">
                   Meta uses the campaign inputs, along with time, budget and performance signals, to learn and generate leads.
-                </p>
+                </p> */}
               </article>
             </div>
           </div>
@@ -391,7 +390,7 @@ export default async function LandingPage() {
                 <span className="kicker">What I handle for you</span>
               </div>
               <h2 className="handle-heading">
-                Your Meta Ads,
+                Your Paid Lead Generation,
                 <br />
                 Handled End-to-End.
               </h2>
@@ -407,33 +406,33 @@ export default async function LandingPage() {
                 {
                   num: "01",
                   title: "Offer & Campaign Strategy",
-                  desc: "I analyse your package, market, price and offer to decide how the campaign should be positioned and promoted.",
+                  desc: "I analyse what you sell, your market, customer, pricing and offer to decide what should be promoted, where and how.",
                 },
                 {
                   num: "02",
                   title: "Persona & Creative Strategy",
-                  desc: "I identify who we’re trying to attract, what matters to them, and develop different offer/theme personas, angles and creative directions.",
+                  desc: "I develop the personas, angles, messages and creative approaches most relevant to your offer and campaign.",
                 },
                 {
                   num: "03",
                   title: "Ad Creatives & Copy",
-                  desc: "I create the static, carousel and video ads — with messaging designed to attract the right travellers and filter out poor-fit leads.",
+                  desc: "From Meta ad creatives and copy to Google ad messaging, I develop ads designed to attract the right prospects and reduce obvious mismatches.",
                 },
                 {
                   num: "04",
                   title: "Campaign Setup & Management",
-                  desc: "I build, launch, monitor and optimize your Meta Ads — from targeting and budget to creative testing, and delivery and performance.",
+                  desc: "I manage Meta Ads, Google Ads or the right combination based on your business — including targeting, keywords, budgets, optimization and performance.",
                 },
                 {
                   num: "05",
                   title: "Lead Quality Optimization",
                   starred: true,
-                  desc: "I track which leads are qualified, why others aren’t, find the biggest lead-quality problem, and improve the campaign around it.",
+                  desc: "I track which leads are qualified, understand why others aren't, identify the biggest lead-quality problem and use those findings to improve the campaigns.",
                 },
                 {
                   num: "06",
                   title: "Performance & Learning Reports",
-                  desc: "Clear reporting on cost per qualified lead, qualified leads %, spend per qualified lead, what worked, what didn’t, and what gets improved next.",
+                  desc: "Clear reporting on spend, leads, qualified leads, cost per qualified lead, what worked, what didn't and what gets improved next.",
                 },
               ].map((step) => (
                 <div className="timeline-item" key={step.num}>
@@ -484,8 +483,7 @@ export default async function LandingPage() {
             </div>
             <div className="handle-banner-divider" aria-hidden="true" />
             <p className="handle-banner-text">
-              <strong>I improve the system that brings you enquiries.</strong> Your team handles the
-              conversation, follow-up and booking.
+              <strong>I improve the system that brings you enquiries.</strong> You or your sales team handles the conversation, follow-up and sale.
             </p>
           </div>
         </div>
@@ -502,14 +500,14 @@ export default async function LandingPage() {
               <span className="kicker">Proof</span>
             </div>
             <h2 className="proof-heading">
-              What Travel Agencies Say
-              <br />
-              About Working With Me.
+              Businesses I&rsquo;ve Worked With.
+              {/* <br />
+              About Working With Me. */}
             </h2>
           </div>
 
           <div className="proof-agencies-wrap">
-            <p className="proof-sublabel">TRAVEL AGENCIES I&rsquo;VE WORKED WITH</p>
+            <p className="proof-sublabel">SELECTED CLIENTS & PROJECTS</p>
             <ProofBrandsMarquee brands={brands} />
           </div>
 
@@ -636,7 +634,7 @@ export default async function LandingPage() {
               </h2>
 
               <p className="apply-desc">
-                Share your current travel campaign and a few recent lead details. I&rsquo;ll review your offer, messaging, targeting and qualification to identify where your lead-quality problem may be coming from — and what to fix first.
+                Share your current campaign and a few details about the leads you&rsquo;re getting. I&rsquo;ll review your offer, message, targeting and qualification to identify where your lead-quality problem may be coming from &mdash; and what to fix first.
               </p>
 
               <div className="apply-features">

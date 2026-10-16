@@ -25,11 +25,15 @@ export default function SiteNav({
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <Link className="brand" href="/" onClick={close}>
+        <Link className="brand" href="/" onClick={close} aria-label="Vishuvabharathi">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-logo" src="/images/logo.png" alt="Loopwings logo" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-text" src="/images/loopwings-white.png" alt="loopwings" />
+          <img
+            className="brand-logo-img"
+            src="/images/vishuvabharathi.png"
+            alt="Vishuvabharathi"
+            width={160}
+            height={40}
+          />
         </Link>
 
         <button

@@ -35,11 +35,9 @@ export default function LoginPage() {
   return (
     <div className="adm-login">
       <form className="adm-login-box" onSubmit={onSubmit}>
-        <div className="brand" style={{ marginBottom: 18 }}>
+        <div className="brand" style={{ marginBottom: 18, justifyContent: "center" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-logo" src="/images/logo.png" alt="" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-text" src="/images/logo-text.png" alt="LoopWings" />
+          <img className="brand-logo-img" src="/images/vishuvabharathi.png" alt="Vishuvabharathi" style={{ height: 32, width: "auto" }} />
         </div>
         <h1 style={{ fontSize: 26 }}>Admin sign in</h1>
         <p className="adm-hint" style={{ margin: "8px 0 20px" }}>

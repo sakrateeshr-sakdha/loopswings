@@ -3,41 +3,41 @@ import Script from "next/script";
 import { SITE_URL } from "@/lib/content";
 import "./globals.css";
 
-const TITLE = "LoopWings — Meta Ads Lead Generation for Travel Agencies";
+const TITLE = "Vishuvabharathi — Paid Ads & Lead Generation";
 const DESCRIPTION =
-  "Meta Ads lead generation built specifically for Indian travel agencies. More relevant travel enquiries — not just more messages.";
+  "Paid lead generation with Meta Ads and Google Ads. More relevant enquiries — not just more messages.";
 
 export const metadata: Metadata = {
   // Makes every relative canonical and Open Graph image resolve to an absolute URL.
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s — LoopWings",
+    template: "%s — Vishuvabharathi",
   },
   description: DESCRIPTION,
-  applicationName: "LoopWings",
+  applicationName: "Vishuvabharathi",
   keywords: [
-    "Meta Ads for travel agencies",
-    "travel agency lead generation",
-    "Facebook Ads travel agency India",
-    "Instagram Ads tour packages",
-    "travel enquiry leads",
+    "Paid ads lead generation",
+    "Meta Ads lead generation",
+    "Google Ads lead generation",
+    "business enquiries",
+    "quality leads",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "LoopWings",
+    siteName: "Vishuvabharathi",
     title: TITLE,
     description: DESCRIPTION,
     url: "/",
     locale: "en_IN",
-    images: [{ url: "/images/logo.png", width: 1672, height: 941, alt: "LoopWings" }],
+    images: [{ url: "/images/vishuvabharathi.png", width: 1024, height: 256, alt: "Vishuvabharathi" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/images/logo.png"],
+    images: ["/images/vishuvabharathi.png"],
   },
   robots: {
     index: true,

@@ -9,10 +9,10 @@ export function OrganizationSchema({ sameAs = [] }: { sameAs?: string[] } = {}) 
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#organization`,
-    name: "LoopWings",
+    name: "Vishuvabharathi",
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
-    image: `${SITE_URL}/images/logo.png`,
+    logo: `${SITE_URL}/images/vishuvabharathi.png`,
+    image: `${SITE_URL}/images/vishuvabharathi.png`,
     description:
       "Meta Ads lead generation built specifically for Indian travel agencies — strategy, creative, campaign build and lead-quality optimization.",
     slogan: "Get 2X More High-Quality Travel Leads in 90 Days",

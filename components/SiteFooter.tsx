@@ -17,27 +17,19 @@ export default async function SiteFooter() {
             {/* Brand column */}
             <div className="dark-footer-brand">
               <div className="dark-footer-brand-header">
-                <div className="dark-footer-logo-badge" aria-hidden="true">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="dark-footer-logo-img"
-                    src="/images/logo.png"
-                    alt="LoopWings"
-                  />
-                </div>
-                <Link href="/" className="dark-footer-brand-logo-link">
+                <Link href="/" className="dark-footer-brand-logo-link" aria-label="Vishuvabharathi">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     className="dark-footer-wordmark-img"
-                    src="/images/loopwings-white.png"
-                    alt="loopwings"
-                    width={140}
-                    height={43}
+                    src="/images/vishuvabharathi.png"
+                    alt="Vishuvabharathi"
+                    width={180}
+                    height={45}
                   />
                 </Link>
               </div>
               <p className="dark-footer-tagline">
-                Meta Ads for Travel Agencies
+                Paid Lead Generation &amp; Ads
                 <br />
                 More Quality Leads. Less Junk.
               </p>
@@ -116,7 +108,7 @@ export default async function SiteFooter() {
 
           {/* Bottom row */}
           <div className="dark-footer-bottom">
-            <p>&copy; 2026 loopwings. All rights reserved.</p>
+            <p>&copy; 2026 Vishuvabharathi. All rights reserved.</p>
             <div className="dark-footer-legal">
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of conditions</a>

@@ -56,6 +56,8 @@ img{max-width:100%}
 }
 .brand-logo{height:20px;width:auto;display:block;object-fit:contain}
 .brand-text{height:30px;width:auto;display:block;object-fit:contain}
+.brand-logo-img{height:32px;width:auto;max-width:180px;display:block;object-fit:contain;transition:opacity .15s ease}
+.brand-logo-img:hover{opacity:.9}
 .nav-links{display:flex;gap:28px;align-items:center;font-size:14px;font-weight:500}
 .nav-links a{text-decoration:none;color:#e4e4e7;transition:color .18s ease}
 .nav-links a:not(.nav-whatsapp-btn):hover{color:var(--gold)}
@@ -2337,9 +2339,9 @@ details p{color:#4d4d4d;margin:12px 0 0}
 }
 
 .dark-footer-wordmark-img {
-  width: 140px;
-  height: auto;
-  max-height: 44px;
+  width: auto;
+  max-width: 190px;
+  height: 38px;
   object-fit: contain;
   display: block;
 }

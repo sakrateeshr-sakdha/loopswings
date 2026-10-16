@@ -24,18 +24,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/testimonials" },
   openGraph: {
     type: "website",
-    siteName: "LoopWings",
-    title: `${TITLE} — LoopWings`,
+    siteName: "Vishuvabharathi",
+    title: `${TITLE} — Vishuvabharathi`,
     description: DESCRIPTION,
     url: "/testimonials",
     locale: "en_IN",
-    images: [{ url: "/images/logo.png", width: 1672, height: 941, alt: "LoopWings" }],
+    images: [{ url: "/images/vishuvabharathi.png", width: 1024, height: 256, alt: "Vishuvabharathi" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${TITLE} — LoopWings`,
+    title: `${TITLE} — Vishuvabharathi`,
     description: DESCRIPTION,
-    images: ["/images/logo.png"],
+    images: ["/images/vishuvabharathi.png"],
   },
 };
 
