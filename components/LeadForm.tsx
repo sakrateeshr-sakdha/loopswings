@@ -334,7 +334,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
             value={productService}
             onChange={(e) => setProductService(e.target.value)}
             required
-            placeholder="e.g. Bali 5N/6D Package, Visa Consulting..."
+            placeholder="e.g. Bali 5N/6D Package, Visa Consulting.."
             aria-label="What product or service are you currently advertising"
             className="lead-input"
           />
@@ -521,20 +521,20 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         </button>
 
         <p className="lead-capacity-note">
-          For businesses &amp; agencies · Limited client capacity
+          For businesses &amp; agencies - Limited client capacity
         </p>
 
         <div className="lead-trust-row">
           <div className="lead-trust-badge">
             <svg
               viewBox="0 0 24 24"
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               fill="currentColor"
               aria-hidden="true"
               className="lead-trust-green"
             >
-              <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm-2 16l-4-4 1.41-1.41L10 15.17l6.59-6.59L18 10l-8 8z" />
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
             <span>No obligation</span>
           </div>
@@ -542,8 +542,8 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
           <div className="lead-trust-badge">
             <svg
               viewBox="0 0 24 24"
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               fill="currentColor"
               aria-hidden="true"
               className="lead-trust-green"
@@ -556,8 +556,8 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
           <div className="lead-trust-badge">
             <svg
               viewBox="0 0 24 24"
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               fill="currentColor"
               aria-hidden="true"
               className="lead-trust-green"
