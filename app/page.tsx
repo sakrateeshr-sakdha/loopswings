@@ -168,8 +168,8 @@ export default async function LandingPage() {
             <div className="reason-right">
               <div className="reason-card">
                 <Image
-                  src="/images/Marketing Targeting Strategy Infographic (1).png"
-                  alt="High-quality enquiries and more bookings lead qualification diagram"
+                  src="/images/marketing-targeting-strategy.png"
+                  alt="Marketing Targeting Strategy Infographic — Offer, Message, Targeting, Qualification"
                   width={520}
                   height={520}
                   className="reason-card-img"
