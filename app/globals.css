@@ -1993,6 +1993,7 @@ svg.doodle{width:100%;height:auto;display:block}
 }
 
 .lead-multiselect-trigger {
+  position: relative;
   width: 100%;
   min-height: 48px;
   height: auto;
@@ -2846,13 +2847,45 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .apply-showcase-section {
     padding: 64px 0 74px;
   }
+  .apply-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   .apply-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
+    justify-items: center;
+    width: 100%;
+  }
+  .apply-left {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 540px;
+  }
+  .apply-badge {
+    margin-inline: auto;
+  }
+  .apply-heading {
+    text-align: center;
+    margin-inline: auto;
+  }
+  .apply-desc {
+    text-align: center;
+    margin-inline: auto;
+  }
+  .apply-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .apply-card {
-    max-width: 540px;
-    margin: 0 auto;
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto !important;
   }
   .lead-form-grid {
     grid-template-columns: 1fr;
@@ -2984,18 +3017,52 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .apply-brush-banner {
     display: none;
   }
+  .apply-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .apply-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    width: 100%;
+    justify-items: center;
+  }
+  .apply-left {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  .apply-badge {
+    margin-inline: auto;
+  }
   .apply-heading {
     font-size: clamp(26px, 7vw, 36px);
+    text-align: center;
+    margin-inline: auto;
   }
   .apply-desc {
     font-size: 15px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-inline: auto;
+  }
+  .apply-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .apply-card {
     padding: 22px 14px 18px;
     border-radius: 18px;
     width: 100%;
-    max-width: 100%;
+    max-width: 480px;
+    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   .lead-form-grid {
     grid-template-columns: 1fr;
