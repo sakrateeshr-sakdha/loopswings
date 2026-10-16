@@ -614,7 +614,7 @@ export default async function LandingPage() {
 
         {/* Bottom-Right Dark Brush Banner */}
         <div className="apply-brush-banner" aria-hidden="true">
-          <span>Let&rsquo;s Grow Your Travel Business</span>
+          <span>Let&rsquo;s Grow Your Business</span>
         </div>
 
         <div className="wrap apply-wrap">
@@ -625,7 +625,7 @@ export default async function LandingPage() {
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
                   <path d="M4 19h16v2H4v-2zm2-7h3v5H6v-5zm5-4h3v9h-3V8zm5-4h3v13h-3V4z" />
                 </svg>
-                <span>FREE TRAVEL LEAD QUALITY AUDIT</span>
+                <span>FREE LEAD QUALITY AUDIT</span>
               </div>
 
               <h2 className="apply-heading">

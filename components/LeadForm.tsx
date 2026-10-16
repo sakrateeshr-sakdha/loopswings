@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+const ADS_RUNNING_OPTIONS = [
+  "Meta Ads",
+  "Google Ads",
+  "Both",
+  "Not running ads yet",
+];
 
 const LEAD_PROBLEM_OPTIONS = [
   "Too many irrelevant enquiries",
-  "Budget is too low",
-  "Just asking for price",
-  "No clear travel dates",
+  "Leads don't have the budget",
+  "Mostly asking for price",
+  "Low buying intent",
   "Stop responding",
   "Not enough qualified leads",
   "Other",
@@ -18,15 +25,34 @@ interface LeadFormProps {
 
 export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: LeadFormProps) {
   const [name, setName] = useState("");
-  const [agency, setAgency] = useState("");
+  const [businessName, setBusinessName] = useState("");
   const [phone, setPhone] = useState("");
-  const [advertisingPackage, setAdvertisingPackage] = useState("");
+  const [productService, setProductService] = useState("");
+  const [adsRunning, setAdsRunning] = useState("");
   const [selectedProblems, setSelectedProblems] = useState<string[]>([]);
   const [otherText, setOtherText] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const [submittedAgency, setSubmittedAgency] = useState("");
+  const [submittedBusiness, setSubmittedBusiness] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: PointerEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    if (dropdownOpen) {
+      document.addEventListener("pointerdown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   function toggleProblem(option: string) {
     setSelectedProblems((prev) =>
@@ -39,7 +65,13 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
     setState("sending");
     setError("");
 
-    // Prepare problems array
+    if (!adsRunning) {
+      setError("Please select where you are currently running ads.");
+      setState("error");
+      return;
+    }
+
+    // Compile problems array
     const compiledProblems = selectedProblems.map((prob) => {
       if (prob === "Other" && otherText.trim()) {
         return `Other: ${otherText.trim()}`;
@@ -53,9 +85,10 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
-          agency: agency.trim(),
+          agency: businessName.trim(),
           phone: phone.trim(),
-          advertisingPackage: advertisingPackage.trim(),
+          advertisingPackage: productService.trim(),
+          adsStatus: adsRunning.trim(),
           leadProblems: compiledProblems,
         }),
       });
@@ -65,7 +98,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         throw new Error(body.error || "Something went wrong. Please try again.");
       }
 
-      setSubmittedAgency(agency.trim());
+      setSubmittedBusiness(businessName.trim());
       setState("sent");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -74,11 +107,10 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
   }
 
   if (state === "sent") {
-    // Build direct WhatsApp link with prefilled context
     const cleanWaUrl = whatsappUrl.split("?")[0];
-    const greeting = submittedAgency
-      ? `Hi Vishu, I just submitted my travel lead quality audit request for ${submittedAgency}.`
-      : "Hi Vishu, I just submitted my travel lead quality audit request.";
+    const greeting = submittedBusiness
+      ? `Hi Vishu, I just submitted my lead quality audit request for ${submittedBusiness}.`
+      : "Hi Vishu, I just submitted my lead quality audit request.";
     const waLink = `${cleanWaUrl}?text=${encodeURIComponent(greeting)}`;
 
     return (
@@ -99,7 +131,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
           </svg>
         </div>
 
-        <h3 className="lead-success-title">Your audit request is submitted.</h3>
+        <h3 className="lead-success-title">Your audit request has been submitted.</h3>
 
         <p className="lead-success-desc">
           I&rsquo;ll review your campaign and identify the biggest lead-quality issue I&rsquo;d
@@ -124,9 +156,10 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
           className="lead-reset-btn"
           onClick={() => {
             setName("");
-            setAgency("");
+            setBusinessName("");
             setPhone("");
-            setAdvertisingPackage("");
+            setProductService("");
+            setAdsRunning("");
             setSelectedProblems([]);
             setOtherText("");
             setState("idle");
@@ -137,6 +170,31 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
       </div>
     );
   }
+
+  // Format multi-select dropdown display text
+  const renderMultiSelectTriggerText = () => {
+    if (selectedProblems.length === 0) {
+      return (
+        <span className="lead-multiselect-value placeholder">
+          6. What&rsquo;s the biggest problem you&rsquo;re seeing with your leads?
+        </span>
+      );
+    }
+    if (selectedProblems.length === 1) {
+      return (
+        <span className="lead-multiselect-value">
+          <span className="lead-multiselect-badge">1</span>
+          {selectedProblems[0]}
+        </span>
+      );
+    }
+    return (
+      <span className="lead-multiselect-value">
+        <span className="lead-multiselect-badge">{selectedProblems.length}</span>
+        {selectedProblems.join(", ")}
+      </span>
+    );
+  };
 
   return (
     <form className="lead-form-grid" onSubmit={onSubmit}>
@@ -168,7 +226,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         />
       </div>
 
-      {/* 2. Travel Agency Name* */}
+      {/* 2. Business Name* */}
       <div className="lead-field">
         <span className="lead-field-icon" aria-hidden="true">
           <svg
@@ -193,11 +251,11 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         </span>
         <input
           name="agency"
-          value={agency}
-          onChange={(e) => setAgency(e.target.value)}
+          value={businessName}
+          onChange={(e) => setBusinessName(e.target.value)}
           required
-          placeholder="2. Travel Agency Name*"
-          aria-label="Travel Agency Name"
+          placeholder="2. Business Name*"
+          aria-label="Business Name"
           className="lead-input"
         />
       </div>
@@ -230,7 +288,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         />
       </div>
 
-      {/* 4. What package / trip are you currently advertising?* */}
+      {/* 4. What product or service are you currently advertising?* */}
       <div className="lead-field lead-field-full">
         <span className="lead-field-icon" aria-hidden="true">
           <svg
@@ -250,63 +308,157 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         </span>
         <input
           name="advertisingPackage"
-          value={advertisingPackage}
-          onChange={(e) => setAdvertisingPackage(e.target.value)}
+          value={productService}
+          onChange={(e) => setProductService(e.target.value)}
           required
-          placeholder="4. What package / trip are you currently advertising?*"
-          aria-label="What package / trip are you currently advertising"
+          placeholder="4. What product or service are you currently advertising?*"
+          aria-label="What product or service are you currently advertising"
           className="lead-input"
         />
       </div>
 
-      {/* 5. What's the biggest problem you're seeing with your leads? */}
-      <div className="lead-field-full lead-problem-group">
-        <label className="lead-problem-title">
-          5. What&rsquo;s the biggest problem you&rsquo;re seeing with your leads?
-        </label>
+      {/* 5. Where are you currently running ads?* */}
+      <div className="lead-field lead-field-full">
+        <span className="lead-field-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="6" />
+            <circle cx="12" cy="12" r="2" />
+          </svg>
+        </span>
+        <select
+          name="adsStatus"
+          value={adsRunning}
+          onChange={(e) => setAdsRunning(e.target.value)}
+          required
+          className="lead-input lead-select"
+          aria-label="Where are you currently running ads"
+        >
+          <option value="">5. Where are you currently running ads?*</option>
+          {ADS_RUNNING_OPTIONS.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        <div className="lead-problem-options">
-          {LEAD_PROBLEM_OPTIONS.map((opt) => {
-            const isChecked = selectedProblems.includes(opt);
-            return (
-              <label
-                key={opt}
-                className={`lead-problem-item ${isChecked ? "active" : ""}`}
-              >
-                <input
-                  type="checkbox"
-                  className="lead-checkbox-hidden"
-                  checked={isChecked}
-                  onChange={() => toggleProblem(opt)}
-                />
-                <span className="lead-problem-box" aria-hidden="true">
-                  {isChecked && (
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="13"
-                      height="13"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="3.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  )}
+      {/* 6. What's the biggest problem you're seeing with your leads? (Multi-select Dropdown) */}
+      <div className="lead-field lead-field-full" ref={dropdownRef}>
+        <div className={`lead-multiselect-wrap ${dropdownOpen ? "open" : ""}`}>
+          <span className="lead-field-icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </span>
+
+          <button
+            type="button"
+            className="lead-multiselect-trigger"
+            onClick={() => setDropdownOpen((prev) => !prev)}
+            aria-expanded={dropdownOpen}
+            aria-haspopup="listbox"
+          >
+            {renderMultiSelectTriggerText()}
+            <span className="lead-multiselect-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </span>
+          </button>
+
+          {dropdownOpen && (
+            <div className="lead-multiselect-dropdown" role="listbox">
+              {LEAD_PROBLEM_OPTIONS.map((option) => {
+                const isSelected = selectedProblems.includes(option);
+                return (
+                  <div
+                    key={option}
+                    className={`lead-multiselect-option ${isSelected ? "selected" : ""}`}
+                    onClick={() => toggleProblem(option)}
+                    role="option"
+                    aria-selected={isSelected}
+                  >
+                    <span className="lead-multiselect-check" aria-hidden="true">
+                      {isSelected && (
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="12"
+                          height="12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      )}
+                    </span>
+                    <span>{option}</span>
+                  </div>
+                );
+              })}
+
+              <div className="lead-multiselect-footer">
+                <span style={{ fontSize: "12px", color: "#64748b" }}>
+                  {selectedProblems.length} selected
                 </span>
-                <span className="lead-problem-text">{opt}</span>
-              </label>
-            );
-          })}
+                <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                  {selectedProblems.length > 0 && (
+                    <button
+                      type="button"
+                      className="lead-multiselect-clear-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProblems([]);
+                        setOtherText("");
+                      }}
+                    >
+                      Clear
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="lead-multiselect-done-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
+        {/* Other text field if "Other" is checked */}
         {selectedProblems.includes("Other") && (
-          <div className="lead-other-wrap">
+          <div className="lead-other-wrap" style={{ marginTop: 8 }}>
             <input
               type="text"
               className="lead-input lead-other-input"
-              placeholder="Please specify other problem..."
+              placeholder="Please specify your biggest lead problem..."
               value={otherText}
               onChange={(e) => setOtherText(e.target.value)}
               autoFocus
@@ -322,7 +474,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
         </button>
 
         <p className="lead-capacity-note">
-          For Indian travel agencies · Limited client capacity
+          For businesses &amp; agencies · Limited client capacity
         </p>
 
         <div className="lead-trust-row">

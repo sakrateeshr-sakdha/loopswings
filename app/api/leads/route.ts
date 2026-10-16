@@ -38,7 +38,10 @@ export async function POST(req: Request) {
   // Format a comprehensive message for notification emails and admin viewing
   const messageParts: string[] = [];
   if (advertisingPackage) {
-    messageParts.push(`Currently Advertising Package / Trip:\n${advertisingPackage}`);
+    messageParts.push(`Product / Service Advertising:\n${advertisingPackage}`);
+  }
+  if (body.adsStatus) {
+    messageParts.push(`Currently Running Ads On:\n${body.adsStatus}`);
   }
   if (leadProblems.length > 0) {
     messageParts.push(`Biggest Problems with Leads:\n• ${leadProblems.join("\n• ")}`);
@@ -68,9 +71,10 @@ export async function POST(req: Request) {
   const missing = (
     [
       ["name", "your name"],
-      ["agency", "travel agency name"],
+      ["agency", "business name"],
       ["phone", "WhatsApp number"],
-      ["advertisingPackage", "what package/trip you are advertising"],
+      ["advertisingPackage", "what product or service you are advertising"],
+      ["adsStatus", "where you are currently running ads"],
     ] as const
   ).filter(([key]) => !lead[key]);
 
