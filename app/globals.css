@@ -1758,71 +1758,7 @@ svg.doodle{width:100%;height:auto;display:block}
   line-height: 1.58;
   color: #374151;
   max-width: 530px;
-  margin: 0 0 32px;
-}
-
-.apply-features {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  margin-bottom: 34px;
-}
-
-.apply-feature-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 11px;
-  width: 132px;
-}
-
-.apply-feature-icon {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid var(--ink);
-  display: grid;
-  place-items: center;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.apply-feature-card:hover .apply-feature-icon {
-  transform: translateY(-3px);
-  box-shadow: 4px 4px 0 var(--ink);
-}
-
-.apply-feature-label {
-  font-size: 13.5px;
-  font-weight: 700;
-  line-height: 1.28;
-  color: var(--ink);
-}
-
-.apply-possibilities-badge {
-  position: relative;
-  display: inline-block;
-  transform: rotate(-4deg);
-  margin-top: 6px;
-}
-
-.apply-possibilities-text {
-  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.22;
-  color: #1e293b;
-  display: block;
-}
-
-.apply-possibilities-swoop {
-  width: 105px;
-  height: 8px;
-  border-bottom: 3px solid #facc15;
-  border-radius: 50%;
-  margin: 4px 0 0;
+  margin: 0;
 }
 
 /* Floating Form Card */
@@ -3054,34 +2990,6 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .apply-desc {
     font-size: 15px;
     margin-bottom: 24px;
-  }
-  .apply-features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 26px;
-  }
-  .apply-feature-card {
-    width: auto;
-    max-width: none;
-    gap: 8px;
-  }
-  .apply-feature-icon {
-    width: 52px;
-    height: 52px;
-  }
-  .apply-feature-icon svg {
-    width: 19px;
-    height: 19px;
-  }
-  .apply-feature-label {
-    font-size: 11.5px;
-    line-height: 1.22;
-  }
-  .apply-possibilities-badge {
-    margin-top: 0;
-    margin-bottom: 12px;
   }
   .apply-card {
     padding: 22px 14px 18px;

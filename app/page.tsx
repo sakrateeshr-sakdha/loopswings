@@ -636,51 +636,6 @@ export default async function LandingPage() {
               <p className="apply-desc">
                 Share your current campaign and a few details about the leads you&rsquo;re getting. I&rsquo;ll review your offer, message, targeting and qualification to identify where your lead-quality problem may be coming from &mdash; and what to fix first.
               </p>
-
-              <div className="apply-features">
-                <div className="apply-feature-card">
-                  <div className="apply-feature-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </div>
-                  <span className="apply-feature-label">More<br />Qualified Leads</span>
-                </div>
-
-                <div className="apply-feature-card">
-                  <div className="apply-feature-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                      <polyline points="17 6 23 6 23 12" />
-                    </svg>
-                  </div>
-                  <span className="apply-feature-label">Better ROI<br />on Ad Spend</span>
-                </div>
-
-                <div className="apply-feature-card">
-                  <div className="apply-feature-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <circle cx="12" cy="12" r="6" />
-                      <circle cx="12" cy="12" r="2" />
-                    </svg>
-                  </div>
-                  <span className="apply-feature-label">Strategy<br />Built for Travel</span>
-                </div>
-              </div>
-
-              {/* Angled handwritten cursive badge */}
-              <div className="apply-possibilities-badge">
-                <span className="apply-possibilities-text">
-                  Exploring<br />
-                  New Possibilities<br />
-                  Together
-                </span>
-                <div className="apply-possibilities-swoop" aria-hidden="true" />
-              </div>
             </div>
 
             {/* Right Column: Floating Form Card */}
