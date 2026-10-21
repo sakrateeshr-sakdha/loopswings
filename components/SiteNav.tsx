@@ -29,10 +29,10 @@ export default function SiteNav({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="brand-logo-img"
-            src="/images/vishuvabharathi.png"
+            src="/images/trans.svg"
             alt="Vishuvabharathi"
-            width={160}
-            height={40}
+            width={180}
+            height={32}
           />
         </Link>
 

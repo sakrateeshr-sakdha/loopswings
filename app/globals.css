@@ -56,7 +56,7 @@ img{max-width:100%}
 }
 .brand-logo{height:20px;width:auto;display:block;object-fit:contain}
 .brand-text{height:30px;width:auto;display:block;object-fit:contain}
-.brand-logo-img{height:32px;width:auto;max-width:180px;display:block;object-fit:contain;transition:opacity .15s ease}
+.brand-logo-img{height:32px;width:auto;max-width:200px;display:block;object-fit:contain;transition:opacity .15s ease}
 .brand-logo-img:hover{opacity:.9}
 .nav-links{display:flex;gap:28px;align-items:center;font-size:14px;font-weight:500}
 .nav-links a{text-decoration:none;color:#e4e4e7;transition:color .18s ease}
@@ -243,9 +243,9 @@ section{padding:64px 0}
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 460px;
+  max-width: 400px;
   margin-inline: auto;
-  margin-top: -45px;
+  margin-top: 24px;
   position: relative;
 }
 .hero-founder-img {
@@ -1247,6 +1247,11 @@ svg.doodle{width:100%;height:auto;display:block}
   mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
 }
 
+.proof-brands-marquee.static {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 .proof-brands-track {
   display: flex;
   width: max-content;
@@ -1255,6 +1260,7 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .proof-brands-track.static {
   animation: none;
+  display: flex;
   justify-content: center;
   width: 100%;
 }
@@ -1265,9 +1271,14 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .proof-brands-set {
   display: flex;
-  gap: 16px;
-  padding-right: 16px;
+  gap: 28px;
+  padding-right: 28px;
   align-items: center;
+  flex: 0 0 auto;
+}
+
+.proof-brands-set.static {
+  padding-right: 0;
 }
 
 @keyframes proofMarquee {
@@ -1282,15 +1293,16 @@ svg.doodle{width:100%;height:auto;display:block}
 .proof-brand-card {
   background: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 14px;
-  height: 68px;
-  padding: 10px 24px;
-  min-width: 170px;
+  border-radius: 16px;
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1 / 1;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  flex: 0 0 auto;
+  flex: 0 0 80px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -1301,25 +1313,29 @@ svg.doodle{width:100%;height:auto;display:block}
 }
 
 .proof-brand-placeholder {
-  font-size: 11.5px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: .08em;
+  letter-spacing: .05em;
   text-transform: uppercase;
   color: #71717a;
   text-align: center;
   user-select: none;
+  line-height: 1.2;
 }
 
 .proof-brand-name {
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 700;
   color: #111827;
   text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  padding: 0 4px;
 }
 
 .proof-brand-img {
-  max-height: 44px;
-  max-width: 130px;
+  max-height: 52px;
+  max-width: 58px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1329,7 +1345,7 @@ svg.doodle{width:100%;height:auto;display:block}
 }
 
 .proof-brand-card:hover .proof-brand-img {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
 /* Featured Video Testimonial Card */
@@ -1623,73 +1639,48 @@ svg.doodle{width:100%;height:auto;display:block}
 }
 .form-note.error{color:#b91c1c;background:#fef2f2;border-color:#fecaca}
 
-/* ---------- apply showcase section (santorini travel showcase) ---------- */
+/* ---------- apply showcase section (Futuristic 3D Lead Quality Audit) ---------- */
 .apply-showcase-section {
   position: relative;
   overflow: hidden;
-  padding: 84px 0 96px;
-  background-color: #eef6fc;
+  padding: 94px 0 104px;
+  background-color: #030816;
   background-image:
-    linear-gradient(180deg, rgba(244, 249, 253, 0.94) 0%, rgba(244, 249, 253, 0.88) 36%, rgba(244, 249, 253, 0.5) 70%, rgba(244, 249, 253, 0.2) 100%),
-    url('/images/santorini-apply-bg.jpg');
-  background-position: center bottom;
+    linear-gradient(90deg, rgba(3, 8, 22, 0.94) 0%, rgba(3, 8, 22, 0.88) 42%, rgba(3, 8, 22, 0.4) 75%, rgba(3, 8, 22, 0.65) 100%),
+    linear-gradient(180deg, rgba(3, 8, 22, 0.6) 0%, transparent 40%, rgba(3, 8, 22, 0.75) 100%),
+    url('/images/lead-audit-bg.jpg');
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-top: 1.5px solid var(--ink);
-  border-bottom: 1.5px solid var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .apply-showcase-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 90%, rgba(255, 255, 255, 0.35) 0%, transparent 60%);
+  background: radial-gradient(circle at 25% 45%, rgba(0, 102, 255, 0.15) 0%, transparent 65%),
+              radial-gradient(circle at 75% 55%, rgba(0, 204, 255, 0.1) 0%, transparent 65%);
   pointer-events: none;
-}
-
-.apply-airplane-doodle {
-  position: absolute;
-  top: 32px;
-  right: clamp(24px, 7vw, 120px);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.apply-airplane-text {
-  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.2;
-  color: #1e293b;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-}
-
-.apply-flight-svg {
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
 
 .apply-brush-banner {
   position: absolute;
   bottom: 24px;
-  right: clamp(20px, 6vw, 100px);
-  background: #111827;
+  right: clamp(20px, 4vw, 60px);
+  background: #091124;
   color: #ffffff;
-  padding: 9px 24px;
-  border-radius: 6px;
-  font-size: 13.5px;
-  font-weight: 800;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
   letter-spacing: -0.01em;
-  transform: rotate(-2.5deg);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
+  transform: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   z-index: 3;
   pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .apply-wrap {
@@ -1699,8 +1690,8 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .apply-grid {
   display: grid;
-  grid-template-columns: 1.06fr 0.94fr;
-  gap: 48px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 4.5vw, 64px);
   align-items: center;
 }
 
@@ -1715,50 +1706,54 @@ svg.doodle{width:100%;height:auto;display:block}
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: #fef08a;
-  border: 1.5px solid #ca8a04;
+  background: #facc15;
   border-radius: 999px;
-  padding: 5px 14px;
-  font-size: 12px;
+  padding: 6px 14px;
+  font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: #854d0e;
+  color: #000000;
   text-transform: uppercase;
   margin-bottom: 22px;
-  box-shadow: 0 2px 6px rgba(202, 138, 4, 0.15);
+  box-shadow: 0 2px 10px rgba(250, 204, 21, 0.35);
+  border: none;
 }
 
 .apply-badge svg {
-  color: #a16207;
+  color: #000000;
   flex-shrink: 0;
 }
 
 .apply-heading {
-  font-size: clamp(34px, 3.8vw, 52px);
+  font-size: clamp(36px, 4.3vw, 56px);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-  color: var(--ink);
-  margin: 0 0 20px;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  color: #ffffff;
+  margin: 0 0 22px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .apply-pill-marker {
   display: inline-block;
   white-space: nowrap;
-  background: #fde047;
-  color: var(--ink);
-  padding: 2px 14px;
+  background: #facc15;
+  color: #000000;
+  padding: 2px 18px;
   border-radius: 999px;
-  border: 1.5px solid #ca8a04;
-  box-shadow: 0 3px 10px rgba(250, 204, 21, 0.35);
+  margin-top: 4px;
+  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.4);
+  border: none;
 }
 
 .apply-desc {
   font-size: 16.5px;
-  line-height: 1.58;
-  color: #374151;
-  max-width: 530px;
+  line-height: 1.7;
+  color: #f1f5f9;
+  max-width: 500px;
   margin: 0;
+  font-weight: 450;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
 }
 
 /* Floating Form Card */
@@ -1770,13 +1765,13 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .apply-card {
   background: #ffffff;
-  border: 1.5px solid #dcdfe4;
-  border-radius: 24px;
-  padding: 30px 26px 24px;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  padding: 34px 30px 24px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.22);
   position: relative;
   width: 100%;
-  max-width: 510px;
+  max-width: 530px;
   margin-left: auto;
   box-sizing: border-box;
 }
@@ -1784,35 +1779,36 @@ svg.doodle{width:100%;height:auto;display:block}
 .apply-card-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 22px;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .apply-card-icon-wrap {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: #fef08a;
-  border: 1.5px solid #facc15;
+  border: 1px solid #fde047;
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(250, 204, 21, 0.28);
+  box-shadow: 0 2px 8px rgba(250, 204, 21, 0.25);
 }
 
 .apply-card-title {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: #0f172a;
   margin: 0;
   line-height: 1.2;
 }
 
 .apply-card-subtitle {
-  font-size: 13.5px;
+  font-size: 13px;
   color: #64748b;
-  margin: 4px 0 0;
+  margin: 3px 0 0;
+  font-weight: 500;
 }
 
 /* Modern Lead Form Grid & Inputs */
@@ -1833,15 +1829,15 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .lead-field-label {
   display: block;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 6px;
-  line-height: 1.35;
+  color: #0f172a;
+  margin-bottom: 5px;
+  line-height: 1.3;
 }
 
 .lead-field-label .lead-req {
-  color: #e11d48;
+  color: #ef4444;
   font-weight: 800;
   margin-left: 2px;
 }
@@ -1870,19 +1866,19 @@ svg.doodle{width:100%;height:auto;display:block}
 }
 
 .lead-field:focus-within .lead-field-icon {
-  color: var(--ink);
+  color: #0f172a;
 }
 
 .lead-input {
   width: 100%;
-  height: 48px;
+  height: 46px;
   background: #f8fafc;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   padding: 0 14px 0 42px;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
-  color: var(--ink);
+  color: #0f172a;
   outline: none;
   font-family: inherit;
   transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
@@ -1891,19 +1887,20 @@ svg.doodle{width:100%;height:auto;display:block}
 .lead-input::placeholder {
   color: #94a3b8;
   font-weight: 400;
+  font-size: 13.5px;
 }
 
 .lead-input:focus {
   background: #ffffff;
-  border-color: #eab308;
-  box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.25);
 }
 
 .lead-select {
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 38px;
@@ -1921,18 +1918,16 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .lead-submit-btn {
   width: 100%;
-  min-height: 50px;
-  height: auto;
+  height: 50px;
   padding: 12px 18px;
-  background: #fde047;
-  border: 2px solid var(--ink);
-  border-radius: 13px;
-  font-size: clamp(13.5px, 3.8vw, 15px);
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  color: var(--ink);
+  background: #facc15;
+  border: 1.5px solid #000000;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #000000;
   cursor: pointer;
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   display: flex;
   align-items: center;
@@ -1945,13 +1940,13 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .lead-submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 5px 5px 0 var(--ink);
-  background: #facc15;
+  box-shadow: 0 6px 20px rgba(250, 204, 21, 0.55);
+  background: #fde047;
 }
 
 .lead-submit-btn:active:not(:disabled) {
   transform: translateY(1px);
-  box-shadow: 1px 1px 0 var(--ink);
+  box-shadow: 0 2px 8px rgba(250, 204, 21, 0.4);
 }
 
 .lead-submit-btn:disabled {
@@ -1961,10 +1956,10 @@ svg.doodle{width:100%;height:auto;display:block}
 
 .lead-capacity-note {
   text-align: center;
-  font-size: 12.5px;
+  font-size: 12px;
   color: #64748b;
-  margin: 10px 0 14px;
-  font-weight: 600;
+  margin: 10px 0 12px;
+  font-weight: 500;
 }
 
 .lead-trust-row {
@@ -2001,12 +1996,12 @@ svg.doodle{width:100%;height:auto;display:block}
 .lead-multiselect-trigger {
   position: relative;
   width: 100%;
-  min-height: 48px;
-  height: auto;
+  min-height: 46px;
+  height: 46px;
   background: #f8fafc;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 13px;
-  padding: 11px 38px 11px 42px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0 38px 0 42px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2020,14 +2015,14 @@ svg.doodle{width:100%;height:auto;display:block}
 .lead-multiselect-trigger:focus,
 .lead-multiselect-wrap.open .lead-multiselect-trigger {
   background: #ffffff;
-  border-color: #eab308;
-  box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.25);
 }
 
 .lead-multiselect-value {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
-  color: var(--ink);
+  color: #0f172a;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2843,7 +2838,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .doodle-card{max-width:none;margin-inline:0} /* stretch to the column again */
   .doodle-card img{max-width:320px;margin:0 auto}
   .hero-doodle-card{max-width:380px;margin-inline:auto;padding:20px 20px 0 20px}
-  .hero-visual-card{width:100%;max-width:420px;margin-inline:auto;margin-top:10px;transform:translateX(4%)}
+  .hero-visual-card{width:100%;max-width:370px;margin-inline:auto;margin-top:20px;transform:translateX(4%)}
   .hero-br-desktop{display:none}
   .hero-actions-column{align-items:center;text-align:center}
   .hero-content{text-align:center}
@@ -2990,6 +2985,10 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .proof-section{padding:50px 0 42px}
   .proof-heading{font-size:clamp(26px,6.8vw,36px)}
   .proof-agencies-wrap{margin-top:30px}
+  .proof-brand-card{width:68px;height:68px;flex:0 0 68px;border-radius:14px;padding:8px}
+  .proof-brand-img{max-height:44px;max-width:50px}
+  .proof-brands-set{gap:18px;padding-right:18px}
+  .proof-brands-set.static{padding-right:0}
   .proof-card{padding:20px 16px;border-radius:18px;margin-top:26px}
   .proof-video-wrapper.portrait{max-width:240px;max-height:420px}
   .proof-card-quote{font-size:15px;line-height:1.55;margin-bottom:20px}
@@ -3029,6 +3028,9 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .apply-showcase-section {
     padding: 38px 0 46px;
     overflow-x: clip;
+    background-image:
+      linear-gradient(180deg, rgba(3, 8, 22, 0.94) 0%, rgba(3, 8, 22, 0.88) 45%, rgba(3, 8, 22, 0.95) 100%),
+      url('/images/lead-audit-bg.jpg');
   }
   .apply-airplane-doodle {
     display: none;
@@ -3066,7 +3068,10 @@ details p{color:#4d4d4d;margin:12px 0 0}
     margin-inline: auto;
   }
   .apply-desc {
-    font-size: 14.5px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #f1f5f9;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
     margin-bottom: 16px;
     text-align: center;
     margin-inline: auto;
@@ -3251,7 +3256,7 @@ details p{color:#4d4d4d;margin:12px 0 0}
   .doodle-card img{max-width:210px;margin:0 auto}
   .hero-doodle-card{max-width:340px;padding:16px 16px 0 16px;margin-inline:auto}
   .hero-doodle-card img{max-width:100%}
-  .hero-visual-card{width:100%;max-width:380px;margin-inline:auto;margin-top:4px;transform:none}
+  .hero-visual-card{width:100%;max-width:330px;margin-inline:auto;margin-top:16px;transform:none}
   .hero-title{font-size:34px; line-height:1.15; word-break: break-word; overflow-wrap: break-word;}
   .hero-lead{font-size:15.5px;line-height:1.58}
   .hero-cta-btn{width:100%;max-width:320px;padding:13px 20px}

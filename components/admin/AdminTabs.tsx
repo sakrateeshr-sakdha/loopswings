@@ -26,7 +26,7 @@ export default function AdminTabs() {
       <div className="adm-bar-left">
         <Link className="brand" href="/" aria-label="Vishuvabharathi">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-logo-img" src="/images/vishuvabharathi.png" alt="Vishuvabharathi" style={{ height: 26, width: "auto" }} />
+          <img className="brand-logo-img" src="/images/trans.svg" alt="Vishuvabharathi" style={{ height: 26, width: "auto" }} />
         </Link>
         <nav className="adm-tabs">
           {TABS.map((tab) => (

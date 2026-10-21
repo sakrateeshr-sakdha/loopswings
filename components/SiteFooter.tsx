@@ -21,10 +21,10 @@ export default async function SiteFooter() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     className="dark-footer-wordmark-img"
-                    src="/images/vishuvabharathi.png"
+                    src="/images/trans.svg"
                     alt="Vishuvabharathi"
                     width={180}
-                    height={45}
+                    height={32}
                   />
                 </Link>
               </div>
@@ -91,18 +91,6 @@ export default async function SiteFooter() {
                   No social links published.
                 </p>
               )}
-            </div>
-
-            {/* Chalkboard artwork box on the right */}
-            <div className="dark-footer-chalk-card">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/footer-travel-agencies.jpg"
-                alt="Helping Indian Travel Agencies Go Further."
-                className="dark-footer-chalk-img"
-                width={1024}
-                height={720}
-              />
             </div>
           </div>
 

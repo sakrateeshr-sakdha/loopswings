@@ -588,31 +588,10 @@ export default async function LandingPage() {
       */}
 
       {/* ========================================================================= */}
-      {/* APPLY / CONTACT SECTION - Santorini Travel Showcase with Lead Form */}
+      {/* APPLY / CONTACT SECTION - Lead Quality Audit Form */}
       {/* ========================================================================= */}
       <section id="apply" className="apply-showcase-section">
-        {/* Top-Right Airplane Doodle */}
-        <div className="apply-airplane-doodle" aria-hidden="true">
-          <div className="apply-airplane-text">
-            <span>Travel</span>
-            <span>More People</span>
-            <span>Explore More</span>
-          </div>
-          <svg viewBox="0 0 120 70" width="100" height="58" fill="none" className="apply-flight-svg">
-            <path
-              d="M10 55 C 30 65, 55 50, 50 30 C 45 10, 20 20, 35 45 C 50 65, 80 40, 105 18"
-              stroke="#1e293b"
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
-            />
-            <path
-              d="M102 12 L115 15 L108 24 L103 21 L106 18 L100 17 L97 19 L95 17 L99 14 L102 12 Z"
-              fill="#1e293b"
-            />
-          </svg>
-        </div>
-
-        {/* Bottom-Right Dark Brush Banner */}
+        {/* Bottom-Right Dark Pill Badge */}
         <div className="apply-brush-banner" aria-hidden="true">
           <span>Let&rsquo;s Grow Your Business</span>
         </div>
@@ -622,14 +601,17 @@ export default async function LandingPage() {
             {/* Left Column */}
             <div className="apply-left">
               <div className="apply-badge">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
                   <path d="M4 19h16v2H4v-2zm2-7h3v5H6v-5zm5-4h3v9h-3V8zm5-4h3v13h-3V4z" />
                 </svg>
                 <span>FREE LEAD QUALITY AUDIT</span>
               </div>
 
               <h2 className="apply-heading">
-                Find Out What&rsquo;s Bringing You{" "}
+                Find Out What&rsquo;s
+                <br />
+                Bringing You
+                <br />
                 <span className="apply-pill-marker">Junk Leads.</span>
               </h2>
 
@@ -643,11 +625,12 @@ export default async function LandingPage() {
               <div className="apply-card">
                 <div className="apply-card-header">
                   <div className="apply-card-icon-wrap" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1 2-2h2" />
-                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-                      <line x1="9" y1="12" x2="15" y2="12" />
-                      <line x1="9" y1="16" x2="13" y2="16" />
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
                     </svg>
                   </div>
                   <div>

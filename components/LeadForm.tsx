@@ -265,7 +265,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             required
-            placeholder="e.g. Wanderlust Holidays"
+            placeholder="e.g. Acme Corp / Your Business"
             aria-label="Business Name"
             className="lead-input"
           />
@@ -334,7 +334,7 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
             value={productService}
             onChange={(e) => setProductService(e.target.value)}
             required
-            placeholder="e.g. Bali 5N/6D Package, Visa Consulting.."
+            placeholder="e.g. Real Estate, Consulting, Coaching, E-commerce..."
             aria-label="What product or service are you currently advertising"
             className="lead-input"
           />
@@ -359,8 +359,8 @@ export default function LeadForm({ whatsappUrl = "https://wa.me/8574859685" }: L
               strokeLinejoin="round"
             >
               <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="6" />
-              <circle cx="12" cy="12" r="2" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
           </span>
           <select
