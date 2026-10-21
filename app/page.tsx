@@ -41,7 +41,7 @@ export default async function LandingPage() {
           <div className="hero-content">
             <span className="kicker">Lead Generation</span>
             <h1 className="hero-title">
-              Getting <span className="hero-travel-pill">Travel</span>
+              Getting <span className="hero-travel-pill">More</span>
               <br />
               Leads, But Most
               <br />
